@@ -8,16 +8,18 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>hexo | Haron&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. locate local blog github repo1$ cd &#x2F;e&#x2F;blog  2. create a new post1$ hexo new &quot;[name]&quot;  3. Run server1$ hexo server  4.  Generate static files1$ hexo generate  5. Deploy to remote sites1$ h">
+  <meta name="description" content="1. how to post a blog locate local blog github repo  1$ cd &#x2F;e&#x2F;blog   create a new post  1$ hexo new &quot;[name]&quot;   Generate static files  1$ hexo generate  Deploy to remote sites  1$ hexo deploy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo">
 <meta property="og:url" content="http://example.com/2022/07/11/hexo/index.html">
 <meta property="og:site_name" content="Haron&#39;s Blog">
-<meta property="og:description" content="1. locate local blog github repo1$ cd &#x2F;e&#x2F;blog  2. create a new post1$ hexo new &quot;[name]&quot;  3. Run server1$ hexo server  4.  Generate static files1$ hexo generate  5. Deploy to remote sites1$ h">
+<meta property="og:description" content="1. how to post a blog locate local blog github repo  1$ cd &#x2F;e&#x2F;blog   create a new post  1$ hexo new &quot;[name]&quot;   Generate static files  1$ hexo generate  Deploy to remote sites  1$ hexo deploy">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-11T13:18:08.000Z">
-<meta property="article:modified_time" content="2022-07-11T13:18:38.977Z">
+<meta property="article:modified_time" content="2022-07-11T14:24:18.762Z">
 <meta property="article:author" content="Haron Wan">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Haron&#39;s Blog" type="application/atom+xml">
@@ -160,15 +162,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-locate-local-blog-github-repo"><a href="#1-locate-local-blog-github-repo" class="headerlink" title="1. locate local blog github repo"></a>1. locate local blog github repo</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash"><span class="built_in">cd</span> /e/blog</span></span><br></pre></td></tr></table></figure>
+        <h2 id="1-how-to-post-a-blog"><a href="#1-how-to-post-a-blog" class="headerlink" title="1. how to post a blog"></a>1. how to post a blog</h2><ol>
+<li>locate local blog github repo</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash"><span class="built_in">cd</span> /e/blog</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-create-a-new-post"><a href="#2-create-a-new-post" class="headerlink" title="2. create a new post"></a>2. create a new post</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">hexo new <span class="string">&quot;[name]&quot;</span></span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>create a new post</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">hexo new <span class="string">&quot;[name]&quot;</span></span></span><br></pre></td></tr></table></figure>
 
-<h2 id="3-Run-server"><a href="#3-Run-server" class="headerlink" title="3. Run server"></a>3. Run server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Generate static files</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>Deploy to remote sites</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-Generate-static-files"><a href="#4-Generate-static-files" class="headerlink" title="4.  Generate static files"></a>4.  Generate static files</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h2 id="2-Other-useful-hexo-command"><a href="#2-Other-useful-hexo-command" class="headerlink" title="2. Other useful hexo command"></a>2. Other useful hexo command</h2><p>view your blog on local server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-Deploy-to-remote-sites"><a href="#5-Deploy-to-remote-sites" class="headerlink" title="5. Deploy to remote sites"></a>5. Deploy to remote sites</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>clean cache</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">hexo clean</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -178,6 +195,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -338,6 +370,14 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
