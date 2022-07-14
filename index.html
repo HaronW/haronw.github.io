@@ -138,94 +138,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Principle-Component-Analysis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/14/Principle-Component-Analysis/">Principle Component Analysis</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/14/Principle-Component-Analysis/" class="archive-article-date">
-  	<time datetime="2022-07-14T15:19:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Principle-Component-Analysis-主成分分析"><a href="#Principle-Component-Analysis-主成分分析" class="headerlink" title="Principle Component Analysis 主成分分析"></a>Principle Component Analysis 主成分分析</h1><hr>
-<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>PCA is one of the most important and widely used dimension reduction algorithm. Other dimension reduction algorithm include LDA, LLE and Laplacian Eigenmaps.<br>You can regard PCA as a one layer neural network with nD input and mD output.<br><strong>PCA reject nD data to mD with the maximum various.</strong><br><img src="https://img-blog.csdnimg.cn/2020041915071143.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>We want to reduct data from nD to mD.<br>$Y  &#x3D; AX$<br>$Y - R^{m<em>1} \ A- R^{m</em>n} \ X-R^{n*1}$ </p>
-<p>$A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
-<p>$\left{\begin{array}{l}<br>Y &#x3D; A(X - \bar{X}) \<br>\bar x &#x3D; E(X) &#x3D; \frac1p\sum\limits_{p&#x3D;1}^Px_p<br>\end{array}\right.$</p>
-<p>$\max \sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2$<br>$\bar y_i &#x3D; \frac1p\sum\limits_{i&#x3D;1}^Py_i &#x3D; \frac {a_i}{p}(\sum\limits_{i&#x3D;1}^Px_i - p\bar x) &#x3D; 0$<br>$\sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2 &#x3D;  \sum\limits_{i&#x3D;1}^P[a_1(x_i - \bar x)]^2 \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;\sum\limits_{i&#x3D;1}^Pa_1[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\sum\limits_{i&#x3D;1}^P[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\Sigma a_1^T$<br>$\Sigma$ – covariance matrix</p>
-<p>Our target:<br>$\left{\begin{array}{l}<br>\max  \ \  a_1\Sigma a_1^T\<br>s.t. \ \ \ \ \ a_1a_1^T &#x3D; ||a_1||^2 &#x3D; 1<br>\end{array}\right.$<br>apply Lagrange multiplier method:<br>$E(a_1) &#x3D; a_1\Sigma a_1^T - \lambda_1(a_1a_1^T -1) \<br>\frac{\partial E}{\partial a_1} &#x3D; (\Sigma a_1^T - \lambda_1a_1^T)^T &#x3D; 0 \<br>\Sigma a_1^T &#x3D; \lambda_1a_1^T$<br>$\lambda_1$ is the largest eigenvalue of $\Sigma$, and $a_1$ is its eigenvector.</p>
-<p>$\left{\begin{array}{l}<br>\max  \ \  a_2\Sigma a_2^T\<br>s.t. \ \ \ \ \ a_2a_2^T &#x3D; ||a_2||^2 &#x3D; 1<br>\end{array}\right.$<br>……(same method)<br>$\lambda_2$ is the second largest eigenvalue of $\Sigma$, and $a_2$ is its eigenvector.</p>
-<p>…..</p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>①    find the value of $\Sigma$<br>②   find the eigenvalues $a_i$ of $\Sigma$ and sort them<br>③  normalize $a_i$, let $a_1a_1^T&#x3D;1$<br>④ $A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
-<p>⑤   $Y &#x3D; A(X - \bar{X})$</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/14/Principle-Component-Analysis/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -299,87 +211,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/11/hexo/">Show All >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Naive-Bayes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/14/Naive-Bayes/">Naive Bayes</a>
-    </h1>
-  
-
-        
-        <a href="/2022/04/14/Naive-Bayes/" class="archive-article-date">
-  	<time datetime="2022-04-14T15:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Naive-Bayesian-朴素贝叶斯"><a href="#Naive-Bayesian-朴素贝叶斯" class="headerlink" title="Naive Bayesian 朴素贝叶斯"></a>Naive Bayesian 朴素贝叶斯</h1><p>We would use an example to show this algorithm, this examples is still using in practice now.</p>
-<p><strong>Spam email classifier</strong><br>$X$ is 1&#x2F;0 vector correspond to dictionary and each dimension represents a word. If a word shows up in a email, then its corresponding value equals to 1.<br>We assume that $X_i$ are independently and identically distribution(IID), although it is obvious that they are not for the meaning of email.<br>We choose top 10,000 common used words as the dictionary.<br>$P(x_1…x_{10000}|y) &#x3D; P(x_1|y)P(x_2|x_1,y)…P(x_{10000}|x_{9999},x_{9998}…x_1,y)$<br>$P(x_1…x_{10000}|y) &#x3D; \prod\limits_{i&#x3D;1}^{10000}P(x_i|y)$<br>Parameters:<br>$\phi_{j|y&#x3D;1} &#x3D; P(x_j&#x3D;1|y&#x3D;1)$<br>$\phi_{j|y&#x3D;0} &#x3D; P(x_j&#x3D;1|y&#x3D;0)$<br>$\phi_y &#x3D; P(y&#x3D;1)$<br>$y&#x3D;1$ means the email is spam email.</p>
-<p>Joint likelihood:<br>$L(\phi_y,\phi_{j|y}) &#x3D; \prod\limits_{i&#x3D;1}^m(x^{(i)},y^{(i)};\phi_y,\phi_{j|y})$<br>MLE:<br>$\phi_y&#x3D;\frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}{m}$<br>$\phi_{j|y&#x3D;1} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}$<br>$\phi_{j|y&#x3D;0} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;0}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;0}}$</p>
-<p><strong>Laplace moving</strong><br>If a new word(not in the top 10000 common words) shows up in a email,  $\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}&#x3D;0$, then $\phi_{j|j&#x3D;0}&#x3D;0$. This seems not robust, so we use Laplace moving to optimize this equation.<br>$\phi_{j|y&#x3D;1} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}+1}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}+10000}$<br>$\phi_{j|y&#x3D;0} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;0}+1}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;0}+10000}$</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/14/Naive-Bayes/">Show All >></a>
         </p>
       
 
@@ -788,7 +619,7 @@
       
         <h1 id="Probability-Classification-Model"><a href="#Probability-Classification-Model" class="headerlink" title="Probability Classification Model"></a>Probability Classification Model</h1><p>Basic Problem：$w_1,w_2$，sample $x \in{w_1,w_2}$, $P(w_1|x),P(w_2|x)&#x3D;?$<br>Classification Problem：<br>If $P(w_1|x)&gt;P(w_2|x)$, then $x\in w_1$<br>If $P(w_1|x)&lt;P(w_2|x)$, then $x\in w_2$</p>
 <p>$P(x|w)$ – Conditional probability of x given w<br>$P(w|x)$ – Posterior probability of x given w<br>$P(w)$ – Prior probability of w</p>
-<p><strong>WARNING: Prior probability can be dicisive in certain circumstances.</strong></p>
+<p><strong>WARNING: Prior probability can be decisive in certain circumstances.</strong></p>
 <h2 id="Naive-Bayesian-朴素贝叶斯"><a href="#Naive-Bayesian-朴素贝叶斯" class="headerlink" title="Naive Bayesian 朴素贝叶斯"></a>Naive Bayesian 朴素贝叶斯</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/14/Naive-Bayes/">blog</a></p>
 <h2 id="Gaussian-Discriminative-Analysis-高斯判别分析-GDA"><a href="#Gaussian-Discriminative-Analysis-高斯判别分析-GDA" class="headerlink" title="Gaussian Discriminative Analysis  高斯判别分析 GDA"></a>Gaussian Discriminative Analysis  高斯判别分析 GDA</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/16/Gaussian-Discriminative-Analysis/">blog</a></p>
 <h2 id="Gaussian-Mixture-Model-高斯混合模型-GMM"><a href="#Gaussian-Mixture-Model-高斯混合模型-GMM" class="headerlink" title="Gaussian Mixture Model 高斯混合模型 GMM"></a>Gaussian Mixture Model 高斯混合模型 GMM</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/16/Gaussion-Mixture-Model/">blog</a></p>
@@ -1013,6 +844,175 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/16/Gaussian-Discriminative-Analysis/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Principle-Component-Analysis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/14/Principle-Component-Analysis/">Principle Component Analysis</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/14/Principle-Component-Analysis/" class="archive-article-date">
+  	<time datetime="2020-04-14T15:19:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Principle-Component-Analysis-主成分分析"><a href="#Principle-Component-Analysis-主成分分析" class="headerlink" title="Principle Component Analysis 主成分分析"></a>Principle Component Analysis 主成分分析</h1><hr>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>PCA is one of the most important and widely used dimension reduction algorithm. Other dimension reduction algorithm include LDA, LLE and Laplacian Eigenmaps.<br>You can regard PCA as a one layer neural network with nD input and mD output.<br><strong>PCA reject nD data to mD with the maximum various.</strong><br><img src="https://img-blog.csdnimg.cn/2020041915071143.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>We want to reduce data from nD to mD.<br>$Y  &#x3D; AX$<br>$Y - R^{m<em>1} \ A- R^{m</em>n} \ X-R^{n*1}$ </p>
+<p>$A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
+<p>$\left{\begin{array}{l}<br>Y &#x3D; A(X - \bar{X}) \<br>\bar x &#x3D; E(X) &#x3D; \frac1p\sum\limits_{p&#x3D;1}^Px_p<br>\end{array}\right.$</p>
+<p>$\max \sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2$<br>$\bar y_i &#x3D; \frac1p\sum\limits_{i&#x3D;1}^Py_i &#x3D; \frac {a_i}{p}(\sum\limits_{i&#x3D;1}^Px_i - p\bar x) &#x3D; 0$<br>$\sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2 &#x3D;  \sum\limits_{i&#x3D;1}^P[a_1(x_i - \bar x)]^2 \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;\sum\limits_{i&#x3D;1}^Pa_1[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\sum\limits_{i&#x3D;1}^P[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\Sigma a_1^T$<br>$\Sigma$ – covariance matrix</p>
+<p>Our target:<br>$\left{\begin{array}{l}<br>\max  \ \  a_1\Sigma a_1^T\<br>s.t. \ \ \ \ \ a_1a_1^T &#x3D; ||a_1||^2 &#x3D; 1<br>\end{array}\right.$<br>apply Lagrange multiplier method:<br>$E(a_1) &#x3D; a_1\Sigma a_1^T - \lambda_1(a_1a_1^T -1) \<br>\frac{\partial E}{\partial a_1} &#x3D; (\Sigma a_1^T - \lambda_1a_1^T)^T &#x3D; 0 \<br>\Sigma a_1^T &#x3D; \lambda_1a_1^T$<br>$\lambda_1$ is the largest eigenvalue of $\Sigma$, and $a_1$ is its eigenvector.</p>
+<p>$\left{\begin{array}{l}<br>\max  \ \  a_2\Sigma a_2^T\<br>s.t. \ \ \ \ \ a_2a_2^T &#x3D; ||a_2||^2 &#x3D; 1<br>\end{array}\right.$<br>……(same method)<br>$\lambda_2$ is the second largest eigenvalue of $\Sigma$, and $a_2$ is its eigenvector.</p>
+<p>…..</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>①    find the value of $\Sigma$<br>②   find the eigenvalues $a_i$ of $\Sigma$ and sort them<br>③  normalize $a_i$, let $a_1a_1^T&#x3D;1$<br>④ $A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
+<p>⑤   $Y &#x3D; A(X - \bar{X})$</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/14/Principle-Component-Analysis/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Naive-Bayes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/14/Naive-Bayes/">Naive Bayes</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/14/Naive-Bayes/" class="archive-article-date">
+  	<time datetime="2020-04-14T15:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Naive-Bayesian-朴素贝叶斯"><a href="#Naive-Bayesian-朴素贝叶斯" class="headerlink" title="Naive Bayesian 朴素贝叶斯"></a>Naive Bayesian 朴素贝叶斯</h1><p>We would use an example to show this algorithm, this examples is still using in practice now.</p>
+<p><strong>Spam email classifier</strong><br>$X$ is 1&#x2F;0 vector correspond to dictionary and each dimension represents a word. If a word shows up in a email, then its corresponding value equals to 1.<br>We assume that $X_i$ are independently and identically distribution(IID), although it is obvious that they are not for the meaning of email.<br>We choose top 10,000 common used words as the dictionary.<br>$P(x_1…x_{10000}|y) &#x3D; P(x_1|y)P(x_2|x_1,y)…P(x_{10000}|x_{9999},x_{9998}…x_1,y)$<br>$P(x_1…x_{10000}|y) &#x3D; \prod\limits_{i&#x3D;1}^{10000}P(x_i|y)$<br>Parameters:<br>$\phi_{j|y&#x3D;1} &#x3D; P(x_j&#x3D;1|y&#x3D;1)$<br>$\phi_{j|y&#x3D;0} &#x3D; P(x_j&#x3D;1|y&#x3D;0)$<br>$\phi_y &#x3D; P(y&#x3D;1)$<br>$y&#x3D;1$ means the email is spam email.</p>
+<p>Joint likelihood:<br>$L(\phi_y,\phi_{j|y}) &#x3D; \prod\limits_{i&#x3D;1}^m(x^{(i)},y^{(i)};\phi_y,\phi_{j|y})$<br>MLE:<br>$\phi_y&#x3D;\frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}{m}$<br>$\phi_{j|y&#x3D;1} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}$<br>$\phi_{j|y&#x3D;0} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;0}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;0}}$</p>
+<p><strong>Laplace moving</strong><br>If a new word(not in the top 10000 common words) shows up in a email,  $\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}&#x3D;0$, then $\phi_{j|j&#x3D;0}&#x3D;0$. This seems not robust, so we use Laplace moving to optimize this equation.<br>$\phi_{j|y&#x3D;1} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}+1}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}+10000}$<br>$\phi_{j|y&#x3D;0} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;0}+1}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;0}+10000}$</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/14/Naive-Bayes/">Show All >></a>
         </p>
       
 
