@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: blog | Haron&#39;s Blog</title>
+  <title>Gaussian Discriminative Analysis | Haron&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Haron&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/blog/index.html">
+  <meta name="description" content="Gaussian Discriminative Analysis   GDA 高斯判别分析Multidimensional Gaussian Model$z \sim N(\vec\mu,\Sigma)$$z \in R^n,\vec\mu \in R^n, \Sigma \in R^{n*n}$$z$ – variable$\vec\mu &#x3D; \begin{bmatrix} \mu_1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gaussian Discriminative Analysis">
+<meta property="og:url" content="http://example.com/2020/04/16/Gaussian-Discriminative-Analysis/index.html">
 <meta property="og:site_name" content="Haron&#39;s Blog">
+<meta property="og:description" content="Gaussian Discriminative Analysis   GDA 高斯判别分析Multidimensional Gaussian Model$z \sim N(\vec\mu,\Sigma)$$z \in R^n,\vec\mu \in R^n, \Sigma \in R^{n*n}$$z$ – variable$\vec\mu &#x3D; \begin{bmatrix} \mu_1">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200415164325354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200415165918546.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-04-16T15:14:08.000Z">
+<meta property="article:modified_time" content="2022-07-14T15:50:09.462Z">
 <meta property="article:author" content="Haron Wan">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="Course Notes">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200415164325354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Haron&#39;s Blog" type="application/atom+xml">
   
@@ -136,64 +145,124 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Gaussian-Discriminative-Analysis" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/11/hexo/" class="archive-article-date">
-  	<time datetime="2022-07-11T13:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/11/hexo/">hexo</a>
+    <h1 class="article-title" itemprop="name">
+      Gaussian Discriminative Analysis
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/16/Gaussian-Discriminative-Analysis/" class="archive-article-date">
+  	<time datetime="2020-04-16T15:14:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Gaussian-Discriminative-Analysis-GDA-高斯判别分析"><a href="#Gaussian-Discriminative-Analysis-GDA-高斯判别分析" class="headerlink" title="Gaussian Discriminative Analysis   GDA 高斯判别分析"></a>Gaussian Discriminative Analysis   GDA 高斯判别分析</h1><h2 id="Multidimensional-Gaussian-Model"><a href="#Multidimensional-Gaussian-Model" class="headerlink" title="Multidimensional Gaussian Model"></a>Multidimensional Gaussian Model</h2><p>$z \sim N(\vec\mu,\Sigma)$<br>$z \in R^n,\vec\mu \in R^n, \Sigma \in R^{n*n}$<br>$z$ – variable<br>$\vec\mu &#x3D; \begin{bmatrix} \mu_1\ \mu_2 \ … \ \mu_n \end{bmatrix}$ – mean vector<br>$\Sigma$ – covarience matrix<br>All the Gaussian models share one covarience matrix.</p>
+<p>$E(z) &#x3D; \vec\mu, Cov(z)&#x3D;E[(x-\vec\mu)(x-\vec\mu)^T]&#x3D;E(zz^T)-(E(z))(E(z))^T$</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>GDA assumes:<br>$x|y&#x3D;0 \sim N(\mu_0,\Sigma)$<br>$x|y&#x3D;1 \sim N(\mu_1,\Sigma)$<br>$y \sim Ber(\phi), \phi &#x3D; P(y&#x3D;1)$</p>
+<h2 id="GDA-model-binary-classification"><a href="#GDA-model-binary-classification" class="headerlink" title="GDA model(binary classification)"></a>GDA model(binary classification)</h2><p>Multivariate Gaussian distribution:<br>$P(x) &#x3D; \frac{1}{(2\pi)^{\frac d2}|\Sigma|^{\frac12}}exp(-\frac12(x-\mu)^T\Sigma^{-1}(x-\mu))$<br>$|\Sigma|$ is the value of determinant of $\Sigma$</p>
+<hr>
+<p>parameter: $\mu_0,\mu_1, \Sigma, \phi$<br>$P(y) &#x3D; \phi^y(1-\phi)^{1-y}$<br>$\phi$ is prior probability, and it depends on the proportion of two classes.</p>
+<hr>
+<p>Joint likelihood:<br>$$<br>L(\phi, \mu_0, \mu_1, \Sigma) &#x3D; \sum\limits_{i&#x3D;1}^mP(x^{(i)},y^{(i)};\phi, \mu_0, \mu_1, \Sigma) &#x3D; \sum\limits_{i&#x3D;1}^mP(x^{(i)}|y^{(i)})P(y^{(i)}) \<br>MLE: \arg\max\limits_{\phi, \mu_0, \mu_1, \Sigma}l(\phi, \mu_0, \mu_1, \Sigma) \<br>\phi &#x3D; \frac{\sum\limits_{i&#x3D;1}^my^{(i)}}{m}&#x3D;\frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}{m} \<br>\mu_k &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;k}x^{(i)}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;k}},k\in {0,1} \<br>\Sigma &#x3D; \frac1m\sum\limits_{i&#x3D;1}^m(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T<br>$$</p>
+<p>Based on the two Gaussian models, we can draw a boundary line.<br><img src="https://img-blog.csdnimg.cn/20200415164325354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="Prediction"><a href="#Prediction" class="headerlink" title="Prediction"></a>Prediction</h2><p>$\arg\max\limits_yP(y|x) &#x3D; \arg\max\limits_y \frac{P(x|y)P(y)}{P(x)}&#x3D;\arg\max\limits_yP(x|y)P(y)$<br>($P(x)$ is a constant)</p>
+<h2 id="amp-Logistic-Regression"><a href="#amp-Logistic-Regression" class="headerlink" title="&amp; Logistic Regression"></a>&amp; Logistic Regression</h2><p>图片是我的笔记<br><img src="https://img-blog.csdnimg.cn/20200415165918546.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>The picture shows when our data is 1D the function looks like <strong>Sigmoid function</strong>. Actually, it is Sigmoid function and it also applys to higher dimension. I won’t prove it here.</li>
+<li>GDA is a stricter version of logistic regression because the data has to follow Gaussian distribution. </li>
+<li>When the data follows Gaussian distribution or the data is very big(according to the central limit theorem), GDA works better than logistic regression.</li>
+<li>Also, the data follows Gaussian distribution so the model has <strong>no local optima</strong>.</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/16/Gaussion-Mixture-Model/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Gaussion Mixture Model
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/14/logistic-regression-and-Newton-s-method/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">logistic regression and Newton&#39;s method</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -216,9 +285,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

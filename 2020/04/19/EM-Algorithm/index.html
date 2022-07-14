@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: blog | Haron&#39;s Blog</title>
+  <title>EM Algorithm | Haron&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Haron&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/blog/index.html">
+  <meta name="description" content="EM Algorithm EM算法 EM algorithm is a iterative optimazation algorithm. EM is the abbreviation of expectation maximization. EM do not apply for all the optimization problems. Remember! EM always converg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EM Algorithm">
+<meta property="og:url" content="http://example.com/2020/04/19/EM-Algorithm/index.html">
 <meta property="og:site_name" content="Haron&#39;s Blog">
+<meta property="og:description" content="EM Algorithm EM算法 EM algorithm is a iterative optimazation algorithm. EM is the abbreviation of expectation maximization. EM do not apply for all the optimization problems. Remember! EM always converg">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200415213206714.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-04-19T15:19:28.000Z">
+<meta property="article:modified_time" content="2022-07-14T15:49:53.805Z">
 <meta property="article:author" content="Haron Wan">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="Course Notes">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200415213206714.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Haron&#39;s Blog" type="application/atom+xml">
   
@@ -136,64 +144,119 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-EM-Algorithm" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/11/hexo/" class="archive-article-date">
-  	<time datetime="2022-07-11T13:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/11/hexo/">hexo</a>
+    <h1 class="article-title" itemprop="name">
+      EM Algorithm
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/19/EM-Algorithm/" class="archive-article-date">
+  	<time datetime="2020-04-19T15:19:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="EM-Algorithm-EM算法"><a href="#EM-Algorithm-EM算法" class="headerlink" title="EM Algorithm EM算法"></a>EM Algorithm EM算法</h1><hr>
+<p>EM algorithm is a iterative optimazation algorithm. EM is the abbreviation of expectation maximization. EM do not apply for all the optimization problems.</p>
+<p>Remember! EM always converge but it can be a local optima.</p>
+<p>EM applys for GMM, K-Means clustering, HMM, etc. </p>
+<h2 id="Jensen’s-Inequality"><a href="#Jensen’s-Inequality" class="headerlink" title="Jensen’s Inequality"></a>Jensen’s Inequality</h2><p>convex function $f, f’’ &gt; 0$;  concave function $f, f’’&lt;0$<br>$E[f(x)] \geq f(E[x]) \ \ \ \ \ f$ is convex<br>$E[f(x)] \leq f(E[x]) \ \ \ \ \ f$ is concave<br>If and only if $x$ is constant equal sign is taken.<br>图片<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40991784">来源</a><br><img src="https://img-blog.csdnimg.cn/20200415213206714.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="EM"><a href="#EM" class="headerlink" title="EM"></a>EM</h2><p>${z_i}_{i&#x3D;1\sim N}$ — $x_i$ belongs to $(z_i)^{th}$ distribution<br>$Q_i(z_i)$ — the probability distribution of $z_i$<br>(You can also turn $z_i$ into a vector and each dimension represents the probability.)</p>
+<hr>
+<p><strong>MLE</strong>:<br>$\max E(\theta)$<br>$E(\theta) &#x3D; \prod\limits_{i&#x3D;1}^N P(x_i|\theta) &#x3D; \prod\limits_{i&#x3D;1}^N [\sum\limits_{z_i}P(x_i, z_i | \theta)]$<br>$l(\theta) &#x3D; \sum\limits_{i&#x3D;1}^N\log[\sum\limits_{z_i} P(x_i,z_i|\theta)]$</p>
+<hr>
+<p>$\theta_i$ — the parameter of $i^{th}$ iteration</p>
+<p>$randomize \ \theta_0 \<br> \ \ \ \ \ \  while (!converge) \$<br>      {<br>$\ \ \ \ \ \ \ \ E-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  Q_i(z_i) &#x3D; \frac{P(x_i, z_i|\theta_k)}{\sum\limits_{z_i} P(x_i,z_i|\theta_k)} \<br>\ \ \ \ \ \ \ \ M-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \theta_{k+1} &#x3D;  \arg\max\limits_{\theta}\sum\limits_{i&#x3D;1}^N\sum\limits_{z_i} Q_i(z_i)\log \frac{P(x_i,z_i|\theta)}{Q_i(z_i)}\$<br>       }</p>
+<p>Jensen’s inequality applys in M-step and the prove of convergence.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/19/AdaBoost/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          AdaBoost
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/17/Probability-Classification-Model/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Probability Classification Model</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -216,9 +279,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

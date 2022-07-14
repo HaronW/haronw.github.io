@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: blog | Haron&#39;s Blog</title>
+  <title>Prime Problem and Dual Problem | Haron&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Haron&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/blog/index.html">
+  <meta name="description" content="Prime Problem and Dual Problemrecommend textbook:Convex Optimization   Stepthen BoydNonlinear Programming Prime Problem$$\left{\begin{array}{l}minimize\ f(\boldsymbol\omega)\s.t.\left{\begin{array}{l}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prime Problem and Dual Problem">
+<meta property="og:url" content="http://example.com/2020/03/19/Prime-Problem-and-Dual-Problem/index.html">
 <meta property="og:site_name" content="Haron&#39;s Blog">
+<meta property="og:description" content="Prime Problem and Dual Problemrecommend textbook:Convex Optimization   Stepthen BoydNonlinear Programming Prime Problem$$\left{\begin{array}{l}minimize\ f(\boldsymbol\omega)\s.t.\left{\begin{array}{l}">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-19T14:48:34.000Z">
+<meta property="article:modified_time" content="2022-07-14T15:51:04.049Z">
 <meta property="article:author" content="Haron Wan">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="Course Notes">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Haron&#39;s Blog" type="application/atom+xml">
@@ -136,64 +142,108 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Prime-Problem-and-Dual-Problem" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/11/hexo/" class="archive-article-date">
-  	<time datetime="2022-07-11T13:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/11/hexo/">hexo</a>
+    <h1 class="article-title" itemprop="name">
+      Prime Problem and Dual Problem
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/03/19/Prime-Problem-and-Dual-Problem/" class="archive-article-date">
+  	<time datetime="2020-03-19T14:48:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Prime-Problem-and-Dual-Problem"><a href="#Prime-Problem-and-Dual-Problem" class="headerlink" title="Prime Problem and Dual Problem"></a>Prime Problem and Dual Problem</h1><p>recommend textbook:<br>Convex Optimization   Stepthen Boyd<br>Nonlinear Programming</p>
+<h3 id="Prime-Problem"><a href="#Prime-Problem" class="headerlink" title="Prime Problem"></a>Prime Problem</h3><p>$$<br>\left{\begin{array}{l}<br>minimize\ f(\boldsymbol\omega)\<br>s.t.\left{\begin{array}{l}<br>g_i(\boldsymbol\omega)\leq0(i&#x3D;1\sim K)\<br>h_i(\boldsymbol\omega) &#x3D; 0 (i&#x3D;1\sim N)<br>\end{array}\right.<br>\end{array}\right.<br>$$</p>
+<h3 id="Dual-Problem"><a href="#Dual-Problem" class="headerlink" title="Dual Problem"></a>Dual Problem</h3><p>$$<br>\left{\begin{array}{l}<br>\Theta(\boldsymbol\alpha, \boldsymbol\beta) &#x3D; \min\limits_{all \ ω}{L(\boldsymbol\omega, \boldsymbol\alpha, \boldsymbol\beta)}\<br>s.t. \ \boldsymbol\alpha_i \geq0<br>\end{array}\right.\<br>L(\boldsymbol\omega,\boldsymbol\alpha, \boldsymbol\beta) &#x3D; f(\boldsymbol\omega)+\sum\limits_{i&#x3D;1}^{K}\boldsymbol\alpha_ig_i(\boldsymbol\omega)+\sum\limits_{i&#x3D;1}^{M}\boldsymbol\beta_ih_i(\boldsymbol\omega)\<br>L(\boldsymbol\omega,\boldsymbol\alpha, \boldsymbol\beta) &#x3D; f(\boldsymbol\omega)+\boldsymbol\alpha^Tg(\boldsymbol\omega)+\boldsymbol\beta^Th(\boldsymbol\omega) \ (vectorize)<br>$$<br><strong>Theorem</strong>: if $\boldsymbol\omega^*$ is the solution of the prime problem and $\boldsymbol\alpha^*, \boldsymbol\beta^*$ is the solution of the dual problem. Then: $f(\boldsymbol\omega^*) \geq \Theta(\boldsymbol\alpha^*, \boldsymbol\beta^*)$<br><strong>Prove</strong>:<br>∵  $\boldsymbol\omega^*$ satisfies prime problem and $\boldsymbol\alpha^*,\boldsymbol\beta^*$ satisfy dual problem<br>$$<br>L(\boldsymbol\omega^*,\boldsymbol\alpha^*, \boldsymbol\beta^*) &#x3D; f(\boldsymbol\omega^*)+\sum\limits_{i&#x3D;1}^K\mathop{\boldsymbol\alpha_i^*}\limits_{\geq0}\mathop{g(\boldsymbol\omega^*)}\limits_{\leq0} +\sum\limits_{i&#x3D;1}^N\boldsymbol\beta_i\mathop{h(\boldsymbol\omega)}\limits_{&#x3D;0}<br>$$<br>∴  $L(\boldsymbol\omega^*,\boldsymbol\alpha^*, \boldsymbol\beta^*) \leq f(\boldsymbol\omega^*)$<br>it is easy to prove that:<br>$\Theta(\boldsymbol\alpha^*, \boldsymbol\beta^*)\leq L(\boldsymbol\omega^*,\boldsymbol\alpha^*, \boldsymbol\beta^*)$<br>∴ $f(\boldsymbol\omega^*) \geq \Theta(\boldsymbol\alpha^*, \boldsymbol\beta^*)$</p>
+<p>Define the distance between prime problem and dual problem <strong>Duality Gap</strong> $G &#x3D; f(\boldsymbol\omega^*) - \Theta(\boldsymbol\alpha^*, \boldsymbol\beta^*) \geq0$. In certain conditions, G &#x3D; 0.</p>
+<p><strong>Strong Duality Theorem</strong>(I won’t prove it here)<br>If f(ω) is a convex function and $g(\omega)&#x3D;A\omega+b, h(\omega) &#x3D; C\omega+d$, then G &#x3D; 0.</p>
+<p>Suppose we have already proved strong duality theorem, then $f(\boldsymbol\omega^*)&#x3D;\Theta(\boldsymbol\alpha^*, \boldsymbol\beta^*)$:<br>①$\omega^* &#x3D; \omega,\ \Theta(\boldsymbol\alpha^*, \boldsymbol\beta^*)&#x3D;L(\boldsymbol\omega^*,\boldsymbol\alpha^*, \boldsymbol\beta^*)$<br>②$\sum\limits_{i&#x3D;1}^{K}\alpha_i^<em>g_i(\omega^</em>) &#x3D; 0, \ \forall i&#x3D;1\sim K, \ \alpha_i^*&#x3D;0 \ or \ g_i^*(\omega^*) &#x3D; 0$<br>② is very important, it is also called <strong>KKT condition</strong> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/03/20/SVM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SVM
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -216,9 +266,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

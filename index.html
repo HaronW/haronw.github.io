@@ -138,6 +138,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Principle-Component-Analysis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/14/Principle-Component-Analysis/">Principle Component Analysis</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/14/Principle-Component-Analysis/" class="archive-article-date">
+  	<time datetime="2022-07-14T15:19:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Principle-Component-Analysis-主成分分析"><a href="#Principle-Component-Analysis-主成分分析" class="headerlink" title="Principle Component Analysis 主成分分析"></a>Principle Component Analysis 主成分分析</h1><hr>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>PCA is one of the most important and widely used dimension reduction algorithm. Other dimension reduction algorithm include LDA, LLE and Laplacian Eigenmaps.<br>You can regard PCA as a one layer neural network with nD input and mD output.<br><strong>PCA reject nD data to mD with the maximum various.</strong><br><img src="https://img-blog.csdnimg.cn/2020041915071143.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>We want to reduct data from nD to mD.<br>$Y  &#x3D; AX$<br>$Y - R^{m<em>1} \ A- R^{m</em>n} \ X-R^{n*1}$ </p>
+<p>$A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
+<p>$\left{\begin{array}{l}<br>Y &#x3D; A(X - \bar{X}) \<br>\bar x &#x3D; E(X) &#x3D; \frac1p\sum\limits_{p&#x3D;1}^Px_p<br>\end{array}\right.$</p>
+<p>$\max \sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2$<br>$\bar y_i &#x3D; \frac1p\sum\limits_{i&#x3D;1}^Py_i &#x3D; \frac {a_i}{p}(\sum\limits_{i&#x3D;1}^Px_i - p\bar x) &#x3D; 0$<br>$\sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2 &#x3D;  \sum\limits_{i&#x3D;1}^P[a_1(x_i - \bar x)]^2 \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;\sum\limits_{i&#x3D;1}^Pa_1[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\sum\limits_{i&#x3D;1}^P[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\Sigma a_1^T$<br>$\Sigma$ – covariance matrix</p>
+<p>Our target:<br>$\left{\begin{array}{l}<br>\max  \ \  a_1\Sigma a_1^T\<br>s.t. \ \ \ \ \ a_1a_1^T &#x3D; ||a_1||^2 &#x3D; 1<br>\end{array}\right.$<br>apply Lagrange multiplier method:<br>$E(a_1) &#x3D; a_1\Sigma a_1^T - \lambda_1(a_1a_1^T -1) \<br>\frac{\partial E}{\partial a_1} &#x3D; (\Sigma a_1^T - \lambda_1a_1^T)^T &#x3D; 0 \<br>\Sigma a_1^T &#x3D; \lambda_1a_1^T$<br>$\lambda_1$ is the largest eigenvalue of $\Sigma$, and $a_1$ is its eigenvector.</p>
+<p>$\left{\begin{array}{l}<br>\max  \ \  a_2\Sigma a_2^T\<br>s.t. \ \ \ \ \ a_2a_2^T &#x3D; ||a_2||^2 &#x3D; 1<br>\end{array}\right.$<br>……(same method)<br>$\lambda_2$ is the second largest eigenvalue of $\Sigma$, and $a_2$ is its eigenvector.</p>
+<p>…..</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>①    find the value of $\Sigma$<br>②   find the eigenvalues $a_i$ of $\Sigma$ and sort them<br>③  normalize $a_i$, let $a_1a_1^T&#x3D;1$<br>④ $A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
+<p>⑤   $Y &#x3D; A(X - \bar{X})$</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/14/Principle-Component-Analysis/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -240,6 +328,724 @@
 
 
   
+    <article id="post-Naive-Bayes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/14/Naive-Bayes/">Naive Bayes</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/14/Naive-Bayes/" class="archive-article-date">
+  	<time datetime="2022-04-14T15:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Naive-Bayesian-朴素贝叶斯"><a href="#Naive-Bayesian-朴素贝叶斯" class="headerlink" title="Naive Bayesian 朴素贝叶斯"></a>Naive Bayesian 朴素贝叶斯</h1><p>We would use an example to show this algorithm, this examples is still using in practice now.</p>
+<p><strong>Spam email classifier</strong><br>$X$ is 1&#x2F;0 vector correspond to dictionary and each dimension represents a word. If a word shows up in a email, then its corresponding value equals to 1.<br>We assume that $X_i$ are independently and identically distribution(IID), although it is obvious that they are not for the meaning of email.<br>We choose top 10,000 common used words as the dictionary.<br>$P(x_1…x_{10000}|y) &#x3D; P(x_1|y)P(x_2|x_1,y)…P(x_{10000}|x_{9999},x_{9998}…x_1,y)$<br>$P(x_1…x_{10000}|y) &#x3D; \prod\limits_{i&#x3D;1}^{10000}P(x_i|y)$<br>Parameters:<br>$\phi_{j|y&#x3D;1} &#x3D; P(x_j&#x3D;1|y&#x3D;1)$<br>$\phi_{j|y&#x3D;0} &#x3D; P(x_j&#x3D;1|y&#x3D;0)$<br>$\phi_y &#x3D; P(y&#x3D;1)$<br>$y&#x3D;1$ means the email is spam email.</p>
+<p>Joint likelihood:<br>$L(\phi_y,\phi_{j|y}) &#x3D; \prod\limits_{i&#x3D;1}^m(x^{(i)},y^{(i)};\phi_y,\phi_{j|y})$<br>MLE:<br>$\phi_y&#x3D;\frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}{m}$<br>$\phi_{j|y&#x3D;1} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}$<br>$\phi_{j|y&#x3D;0} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;0}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;0}}$</p>
+<p><strong>Laplace moving</strong><br>If a new word(not in the top 10000 common words) shows up in a email,  $\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}&#x3D;0$, then $\phi_{j|j&#x3D;0}&#x3D;0$. This seems not robust, so we use Laplace moving to optimize this equation.<br>$\phi_{j|y&#x3D;1} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;1}+1}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}+10000}$<br>$\phi_{j|y&#x3D;0} &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{x^{(i)}&#x3D;1,y^{(i)}&#x3D;0}+1}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;0}+10000}$</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/14/Naive-Bayes/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Singular-Value-Decomposition" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/Singular-Value-Decomposition/">Singular Value Decomposition</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/Singular-Value-Decomposition/" class="archive-article-date">
+  	<time datetime="2020-05-14T15:21:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="奇异值分解-Singular-Value-Decomposition"><a href="#奇异值分解-Singular-Value-Decomposition" class="headerlink" title="奇异值分解 Singular Value Decomposition"></a>奇异值分解 Singular Value Decomposition</h1><hr>
+<p>[toc]</p>
+<h2 id="奇异值分解的定义与性质"><a href="#奇异值分解的定义与性质" class="headerlink" title="奇异值分解的定义与性质"></a>奇异值分解的定义与性质</h2><h3 id="定义与定理"><a href="#定义与定理" class="headerlink" title="定义与定理"></a>定义与定理</h3><p>$$<br>A &#x3D; U\Sigma V^T<br>$$<br>A是任意矩阵（$m\times n$），连方阵都不要求 。<br>$U$是正交矩阵orthogonal matrix($m\times m$)，列向量被称为左奇异向量<br>$V$是正交矩阵orthogonal matrix($n\times n$)，列向量被称为右奇异向量<br>$\Sigma$是矩形对角矩阵rectangular diagonal matrix($m\times n$)，所有元素非负，且按照降序排列$\Sigma &#x3D; diag(\sigma_1, \sigma_2,…,\sigma_p)$<br>$\sigma$为奇异值</p>
+<p>奇异值分解定理：任意矩阵A一定存在奇异值分解</p>
+<h3 id="紧奇异值分解和截断奇异值分解"><a href="#紧奇异值分解和截断奇异值分解" class="headerlink" title="紧奇异值分解和截断奇异值分解"></a>紧奇异值分解和截断奇异值分解</h3><p>$A &#x3D; U\Sigma V^T$被称为A的完全奇异值分解full SVD, 紧奇异值分解compact SVD是与原始矩阵等秩的奇异值分解；截断奇异值分解truuncate SVD是比原始矩阵低秩的奇异值分解</p>
+<p>$A &#x3D; U\Sigma V^T$为完全奇异值分解<br>$A &#x3D; U_r\Sigma_r V_r^T$ 为紧奇异值分解，$U_r$为$U$的前r列，$V_r$为$V$的前r列，$\Sigma_r$为$\Sigma$的前r个对角线元素，$\Sigma_r$的秩与原始矩阵的秩相等。<br><strong>r为A的秩</strong><br>$A &#x3D; U_k\Sigma_k V_k^T$ 为截断奇异值分解，$U_k$为$U$的前k列，$V_k$为$V$的前k列，$\Sigma_k$为$\Sigma$的前k个对角线元素，$\Sigma_k$的秩与原始矩阵的秩相等。<br><strong>k&lt;r</strong></p>
+<p><strong>实际应用中提到奇异值分解一般指截断奇异值分解</strong></p>
+<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>U是坐标系的旋转或者反射变换，Σ是坐标系的放缩变换，V是坐标系的旋转或者反射变换<img src="https://img-blog.csdnimg.cn/20200519224835171.jpg" alt="在这里插入图片描述"></p>
+<h3 id="主要性质"><a href="#主要性质" class="headerlink" title="主要性质"></a>主要性质</h3><p>（这一部分有些不太懂的，回头再看）</p>
+<ol>
+<li>$A^TA$和$AA^T$一定存在特征分解，V的列向量是$A^TA$的特征向量，U的列向量是$AA^T$的特征向量，Σ的奇异值是$A^TA$和$AA^T$特征值的平方根</li>
+<li>$$A^Tu_j&#x3D;\sigma_jv_j\ \ \ \ \ j&#x3D;1,2,..,n \ A^Tu_j&#x3D;0 \ \ \ \ \ \ \ j&#x3D;n+1,n+2,…,m$$</li>
+<li>奇异值分解中，Σ是唯一的，U和V不是唯一的</li>
+<li>rank(A) &#x3D; rank($\Sigma$) &#x3D; # $\sigma_i(\sigma_i&gt;0)$ &#x3D; r</li>
+<li>(没看懂)</li>
+</ol>
+<h2 id="奇异值分解的计算"><a href="#奇异值分解的计算" class="headerlink" title="奇异值分解的计算"></a>奇异值分解的计算</h2><p>$A^TA$的特征向量为V的列向量；Σ： $A^TA$的特征值开根号，降序排列，放到对角线上，其他地方补0；求正奇异值对应的左奇异值，求扩充的$A^T$的标准正交基，构成U的列。</p>
+<h2 id="奇异值分解和矩阵近似"><a href="#奇异值分解和矩阵近似" class="headerlink" title="奇异值分解和矩阵近似"></a>奇异值分解和矩阵近似</h2><h3 id="弗罗贝尼乌斯范数Frobenius-norm"><a href="#弗罗贝尼乌斯范数Frobenius-norm" class="headerlink" title="弗罗贝尼乌斯范数Frobenius norm"></a>弗罗贝尼乌斯范数Frobenius norm</h3><p>$$<br>||A||<em>F&#x3D;(\sum\limits</em>{i&#x3D;1}^m\sum\limits_{j&#x3D;1}^n(a_{ij})^2)^\frac12<br>$$<br>（所有元素的平方和开根号）</p>
+<p>定理：$||A||_F&#x3D;||\Sigma||_F&#x3D;(\sigma_1^2+\sigma_2^2+…+\sigma_n^2)^\frac12$</p>
+<h3 id="矩阵的最优近似"><a href="#矩阵的最优近似" class="headerlink" title="矩阵的最优近似"></a>矩阵的最优近似</h3><p>奇异值分解是在平方损失（即弗罗贝尼乌斯范数）意义下对矩阵的最优近似，即数据压缩<br>$rank(A) &#x3D; r, A&#x3D;U\Sigma V^T,M$为所有秩不超过k($k\leq r$)的矩阵的集合，一定存在$||A_X||<em>F&#x3D;\min\limits</em>{S\in M}||A-S||<em>F$，且$||A-X||<em>F&#x3D;(\sigma</em>{k+1}^2+\sigma</em>{k+2}^2+…+\sigma_n^2)^\frac12$。特别的，当r&#x3D;k时，$A’&#x3D;U\Sigma ‘V^T$是达到最优值的矩阵<br>紧奇异值分解是Frobenius norm意义下的无损压缩<br>截断奇异值分解是Frobenius norm意义下的有损压缩，k常常远小于r，由于σ递减很快，所以截断奇异值分解也可以有较好的近似</p>
+<h3 id="矩阵的外积展开式"><a href="#矩阵的外积展开式" class="headerlink" title="矩阵的外积展开式"></a>矩阵的外积展开式</h3><p>$$<br>U\Sigma &#x3D; [\sigma_1u_1 \ \ \sigma_2u_2 \ \ \ … \ \ \sigma_nu_n] \<br>V^T &#x3D; [v_1^T \ \ \ v_2^T \ \ \ … \ \ \ v_n^T]^T \<br>A &#x3D; \sigma_1u_1v_1^T + \sigma_2u_2v_2^T + … + \sigma_nu_nv_n^T \<br>A_k &#x3D; \sigma_1u_1v_1^T + \sigma_2u_2v_2^T + … + \sigma_ku_kv_k^T<br>$$<br>$A_k$即为A的截断奇异值分解，也是秩为k的最优近似。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/Singular-Value-Decomposition/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-K-Nearest-Neighbour" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/21/K-Nearest-Neighbour/">K-Nearest Neighbour</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/21/K-Nearest-Neighbour/" class="archive-article-date">
+  	<time datetime="2020-04-21T15:20:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="K-Nearest-Neighbor-K最近邻"><a href="#K-Nearest-Neighbor-K最近邻" class="headerlink" title="K-Nearest Neighbor K最近邻"></a>K-Nearest Neighbor K最近邻</h1><p><img src="https://img-blog.csdnimg.cn/20200421151712200.png" alt="在这里插入图片描述"></p>
+<p>KNN find a k nearest examples(neighbour) and vote for its prediction.<br>In the picture, we want to classify green circle. If $k&#x3D;3$, green circle belongs to the red triangle class. If $k&#x3D;5$, green circle belongs to the blue square class. </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/21/K-Nearest-Neighbour/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-AdaBoost" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/19/AdaBoost/">AdaBoost</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/19/AdaBoost/" class="archive-article-date">
+  	<time datetime="2020-04-19T15:20:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AdaBoost-Algorithm-自适应提升"><a href="#AdaBoost-Algorithm-自适应提升" class="headerlink" title="AdaBoost Algorithm 自适应提升"></a>AdaBoost Algorithm 自适应提升</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Adaboost is the abbreviation of adaptive boosting.<br>Adaboost combines plenty of weak classification models to form a strong classification.<br>Adaboost usually use one layer decision tree as weak claasification. </p>
+<h2 id="Adaboost-for-binary-classification"><a href="#Adaboost-for-binary-classification" class="headerlink" title="Adaboost (for binary classification)"></a>Adaboost (for binary classification)</h2><ul>
+<li>data    $T &#x3D; {(x_i, y_i)}_{i&#x3D;1 \sim n}$</li>
+<li>weight of data    $w_i$</li>
+<li>weight of classifiers    $z_i$</li>
+<li>weighted error rate    $e_m$</li>
+</ul>
+<p>$$<br>Initialization \ sampling \<br>\ \ \ \ \ \ \ \ D_1 &#x3D; (w_1^{(1)}, w_2^{(1)}…w_n^{(1)}) \<br>for(m&#x3D;1 \sim M) \<br>{ \<br>\ \ \ \ \ \ \ \ train \ the \ classifier: \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  G_m(x) &#x3D; \pm 1 \  \<br>\ \ \ \ \ \ \ \ compute \ weighted \ error \ rate: \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e_m &#x3D; P(G_m(x_i) \not&#x3D; y_i)  &#x3D; \sum\limits_{i&#x3D;1}^N w^{(m)}<em>i \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \alpha_m &#x3D; \frac12 \log \frac{1-e_m}{e_m} \<br>\ \ \ \ \ \ \ \ update \ weight \ distribution(aka \ resampling) \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z_m &#x3D; \sum\limits^N</em>{i&#x3D;1}w_i^{(m)}\exp[-\alpha_my_iG_m(x_i)] \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w_i^{(m+1)} &#x3D; \frac{w_i^{(m)}}{z_m}\exp[-\alpha_my_iG_m(x_i)] \<br>} \<br>final \ classifier \<br>\ \ \ \ \ \ \ \ f(x) &#x3D; \sum\limits_{m&#x3D;1}^M\alpha_mG_m(x) \<br>\ \ \ \ \ \ \ \ G(x) &#x3D; sign(f(x))<br>$$</p>
+<hr>
+<p>Data scientists have proved that adaboost can reduce the error rate on <strong>training set</strong> and at least make the error rate on validation set grow not too fast. </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/19/AdaBoost/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-EM-Algorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/19/EM-Algorithm/">EM Algorithm</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/19/EM-Algorithm/" class="archive-article-date">
+  	<time datetime="2020-04-19T15:19:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="EM-Algorithm-EM算法"><a href="#EM-Algorithm-EM算法" class="headerlink" title="EM Algorithm EM算法"></a>EM Algorithm EM算法</h1><hr>
+<p>EM algorithm is a iterative optimazation algorithm. EM is the abbreviation of expectation maximization. EM do not apply for all the optimization problems.</p>
+<p>Remember! EM always converge but it can be a local optima.</p>
+<p>EM applys for GMM, K-Means clustering, HMM, etc. </p>
+<h2 id="Jensen’s-Inequality"><a href="#Jensen’s-Inequality" class="headerlink" title="Jensen’s Inequality"></a>Jensen’s Inequality</h2><p>convex function $f, f’’ &gt; 0$;  concave function $f, f’’&lt;0$<br>$E[f(x)] \geq f(E[x]) \ \ \ \ \ f$ is convex<br>$E[f(x)] \leq f(E[x]) \ \ \ \ \ f$ is concave<br>If and only if $x$ is constant equal sign is taken.<br>图片<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40991784">来源</a><br><img src="https://img-blog.csdnimg.cn/20200415213206714.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="EM"><a href="#EM" class="headerlink" title="EM"></a>EM</h2><p>${z_i}_{i&#x3D;1\sim N}$ — $x_i$ belongs to $(z_i)^{th}$ distribution<br>$Q_i(z_i)$ — the probability distribution of $z_i$<br>(You can also turn $z_i$ into a vector and each dimension represents the probability.)</p>
+<hr>
+<p><strong>MLE</strong>:<br>$\max E(\theta)$<br>$E(\theta) &#x3D; \prod\limits_{i&#x3D;1}^N P(x_i|\theta) &#x3D; \prod\limits_{i&#x3D;1}^N [\sum\limits_{z_i}P(x_i, z_i | \theta)]$<br>$l(\theta) &#x3D; \sum\limits_{i&#x3D;1}^N\log[\sum\limits_{z_i} P(x_i,z_i|\theta)]$</p>
+<hr>
+<p>$\theta_i$ — the parameter of $i^{th}$ iteration</p>
+<p>$randomize \ \theta_0 \<br> \ \ \ \ \ \  while (!converge) \$<br>      {<br>$\ \ \ \ \ \ \ \ E-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  Q_i(z_i) &#x3D; \frac{P(x_i, z_i|\theta_k)}{\sum\limits_{z_i} P(x_i,z_i|\theta_k)} \<br>\ \ \ \ \ \ \ \ M-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \theta_{k+1} &#x3D;  \arg\max\limits_{\theta}\sum\limits_{i&#x3D;1}^N\sum\limits_{z_i} Q_i(z_i)\log \frac{P(x_i,z_i|\theta)}{Q_i(z_i)}\$<br>       }</p>
+<p>Jensen’s inequality applys in M-step and the prove of convergence.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/19/EM-Algorithm/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Probability-Classification-Model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/17/Probability-Classification-Model/">Probability Classification Model</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/17/Probability-Classification-Model/" class="archive-article-date">
+  	<time datetime="2020-04-17T15:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Probability-Classification-Model"><a href="#Probability-Classification-Model" class="headerlink" title="Probability Classification Model"></a>Probability Classification Model</h1><p>Basic Problem：$w_1,w_2$，sample $x \in{w_1,w_2}$, $P(w_1|x),P(w_2|x)&#x3D;?$<br>Classification Problem：<br>If $P(w_1|x)&gt;P(w_2|x)$, then $x\in w_1$<br>If $P(w_1|x)&lt;P(w_2|x)$, then $x\in w_2$</p>
+<p>$P(x|w)$ – Conditional probability of x given w<br>$P(w|x)$ – Posterior probability of x given w<br>$P(w)$ – Prior probability of w</p>
+<p><strong>WARNING: Prior probability can be dicisive in certain circumstances.</strong></p>
+<h2 id="Naive-Bayesian-朴素贝叶斯"><a href="#Naive-Bayesian-朴素贝叶斯" class="headerlink" title="Naive Bayesian 朴素贝叶斯"></a>Naive Bayesian 朴素贝叶斯</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/14/Naive-Bayes/">blog</a></p>
+<h2 id="Gaussian-Discriminative-Analysis-高斯判别分析-GDA"><a href="#Gaussian-Discriminative-Analysis-高斯判别分析-GDA" class="headerlink" title="Gaussian Discriminative Analysis  高斯判别分析 GDA"></a>Gaussian Discriminative Analysis  高斯判别分析 GDA</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/16/Gaussian-Discriminative-Analysis/">blog</a></p>
+<h2 id="Gaussian-Mixture-Model-高斯混合模型-GMM"><a href="#Gaussian-Mixture-Model-高斯混合模型-GMM" class="headerlink" title="Gaussian Mixture Model 高斯混合模型 GMM"></a>Gaussian Mixture Model 高斯混合模型 GMM</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/16/Gaussion-Mixture-Model/">blog</a></p>
+<h2 id="EM-Algorithm-EM算法"><a href="#EM-Algorithm-EM算法" class="headerlink" title="EM Algorithm EM算法"></a>EM Algorithm EM算法</h2><p> <a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/19/EM-Algorithm/">blog</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/17/Probability-Classification-Model/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Gaussion-Mixture-Model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/16/Gaussion-Mixture-Model/">Gaussion Mixture Model</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/16/Gaussion-Mixture-Model/" class="archive-article-date">
+  	<time datetime="2020-04-16T15:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Gaussian-Mixture-Model-GMM-高斯混合模型"><a href="#Gaussian-Mixture-Model-GMM-高斯混合模型" class="headerlink" title="Gaussian Mixture Model GMM 高斯混合模型"></a>Gaussian Mixture Model GMM 高斯混合模型</h1><hr>
+<p><img src="https://img-blog.csdnimg.cn/20200415195228606.gif" alt="在这里插入图片描述"></p>
+<p>Gaussian mixture model is a combine of multiple Gaussian models. These Gaussian models mixture according to ‘weight’ $\pi$. The picture is a mixture of two models.</p>
+<hr>
+<h2 id="GMM"><a href="#GMM" class="headerlink" title="GMM"></a>GMM</h2><p>$$<br>\left{\begin{array}{l}<br>P(X|c) &#x3D; \sum\limits_{k&#x3D;1}^K\pi_kN(x^{(n)}|\mu_k, \Sigma_k) \<br>N(x^{(n)}|\mu_k, \Sigma_k) &#x3D; \frac{1}{(2\pi)^{\frac d2}|\Sigma_k|^{\frac12}}exp[-\frac12(x^{(n)}-\mu_k)^T\Sigma^{-1}(x^{(n)}-\mu_k)] \<br>\sum\limits_{k&#x3D;1}^K \pi_k&#x3D; 1<br>\end{array}\right.<br>$$</p>
+<p>$\pi_k$ – the probability of one example belongs to the $k^{th}$ Gaussian model&#x2F;the weight of $k^{th}$ model in the mixture model</p>
+<p>Attention! GMM is not a convex function and it has local optima(k local optima). What shall we do?<br><strong>Strategies</strong>:<br>(i) gradient descent<br>(ii) heuristic algorithm  including Simulated Annealing, Evolutionary Algorithms, etc  (People hardly use these algorithms nowadays)<br>(iii)<strong>EM algorithm</strong>  Today’s superstar</p>
+<h2 id="EM-Algorithm-for-GMM"><a href="#EM-Algorithm-for-GMM" class="headerlink" title="EM Algorithm for GMM"></a>EM Algorithm for GMM</h2><p><a target="_blank" rel="noopener" href="https://haronblog.com/2020/04/19/EM-Algorithm/">general EM Algorithm</a></p>
+<h3 id="Pros-and-cons"><a href="#Pros-and-cons" class="headerlink" title="Pros and cons"></a>Pros and cons</h3><p>Cons: </p>
+<ol>
+<li>EM algorithm is not a general algorithm dealing with non-convex problem.</li>
+</ol>
+<p>Pros:</p>
+<ol>
+<li>No hyper-parameters</li>
+<li>Simple coding work</li>
+<li>Theoretically graceful</li>
+</ol>
+<hr>
+<h3 id="EM-for-GMM"><a href="#EM-for-GMM" class="headerlink" title="EM for GMM"></a>EM for GMM</h3><p>$\gamma_{nk}$ – the probability of $x^{(n)}$ belongs to $k^{th}$ model<br>$N_k$ – the expectation of #examples belong to $k^{th}$ model</p>
+<p>$randomize {\pi_k,\mu_k,\Sigma_k}<em>{k&#x3D;1\sim K} \<br>while (!converge) \<br>{ \<br>\ \ \ \ \ \ \ \ E-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \gamma</em>{nk} &#x3D; \frac{\pi_kN(x_n|\mu_k, \Sigma_k)}{\sum\limits_{k&#x3D;1}^KN(x_n|\mu_k, \Sigma_k)} \<br>\ \ \ \ \ \ \ \ M-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ N_k&#x3D; \sum\limits_{k&#x3D;1}^K\gamma_{nk} \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for(k \ models) \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ { \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \pi_k^{(new)}&#x3D;\frac{N_k}{N} \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  \mu_k^{(new)} &#x3D;  \frac{1}{N_k}\sum\limits_{n&#x3D;1}^N\gamma_{nk}x^{(n)} \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Sigma_k^{(new)} &#x3D; \frac{1}{N_k}\sum\limits_{n&#x3D;1}^N\gamma_{nk}[x^{(n)}-\mu_k^{(new)}] [x^{(n)}-\mu_k^{(new)}] ^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ { \<br>}$<br>We use soft discrimination in this application of EM algorithm, which means we will compute the probability of each examples belongs to all models. In other applictions, take K-Means clustering algorithm for example, we use winner-takes-all strategy.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/16/Gaussion-Mixture-Model/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Gaussian-Discriminative-Analysis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/16/Gaussian-Discriminative-Analysis/">Gaussian Discriminative Analysis</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/16/Gaussian-Discriminative-Analysis/" class="archive-article-date">
+  	<time datetime="2020-04-16T15:14:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Gaussian-Discriminative-Analysis-GDA-高斯判别分析"><a href="#Gaussian-Discriminative-Analysis-GDA-高斯判别分析" class="headerlink" title="Gaussian Discriminative Analysis   GDA 高斯判别分析"></a>Gaussian Discriminative Analysis   GDA 高斯判别分析</h1><h2 id="Multidimensional-Gaussian-Model"><a href="#Multidimensional-Gaussian-Model" class="headerlink" title="Multidimensional Gaussian Model"></a>Multidimensional Gaussian Model</h2><p>$z \sim N(\vec\mu,\Sigma)$<br>$z \in R^n,\vec\mu \in R^n, \Sigma \in R^{n*n}$<br>$z$ – variable<br>$\vec\mu &#x3D; \begin{bmatrix} \mu_1\ \mu_2 \ … \ \mu_n \end{bmatrix}$ – mean vector<br>$\Sigma$ – covarience matrix<br>All the Gaussian models share one covarience matrix.</p>
+<p>$E(z) &#x3D; \vec\mu, Cov(z)&#x3D;E[(x-\vec\mu)(x-\vec\mu)^T]&#x3D;E(zz^T)-(E(z))(E(z))^T$</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>GDA assumes:<br>$x|y&#x3D;0 \sim N(\mu_0,\Sigma)$<br>$x|y&#x3D;1 \sim N(\mu_1,\Sigma)$<br>$y \sim Ber(\phi), \phi &#x3D; P(y&#x3D;1)$</p>
+<h2 id="GDA-model-binary-classification"><a href="#GDA-model-binary-classification" class="headerlink" title="GDA model(binary classification)"></a>GDA model(binary classification)</h2><p>Multivariate Gaussian distribution:<br>$P(x) &#x3D; \frac{1}{(2\pi)^{\frac d2}|\Sigma|^{\frac12}}exp(-\frac12(x-\mu)^T\Sigma^{-1}(x-\mu))$<br>$|\Sigma|$ is the value of determinant of $\Sigma$</p>
+<hr>
+<p>parameter: $\mu_0,\mu_1, \Sigma, \phi$<br>$P(y) &#x3D; \phi^y(1-\phi)^{1-y}$<br>$\phi$ is prior probability, and it depends on the proportion of two classes.</p>
+<hr>
+<p>Joint likelihood:<br>$$<br>L(\phi, \mu_0, \mu_1, \Sigma) &#x3D; \sum\limits_{i&#x3D;1}^mP(x^{(i)},y^{(i)};\phi, \mu_0, \mu_1, \Sigma) &#x3D; \sum\limits_{i&#x3D;1}^mP(x^{(i)}|y^{(i)})P(y^{(i)}) \<br>MLE: \arg\max\limits_{\phi, \mu_0, \mu_1, \Sigma}l(\phi, \mu_0, \mu_1, \Sigma) \<br>\phi &#x3D; \frac{\sum\limits_{i&#x3D;1}^my^{(i)}}{m}&#x3D;\frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;1}}{m} \<br>\mu_k &#x3D; \frac{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;k}x^{(i)}}{\sum\limits_{i&#x3D;1}^m1{y^{(i)}&#x3D;k}},k\in {0,1} \<br>\Sigma &#x3D; \frac1m\sum\limits_{i&#x3D;1}^m(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T<br>$$</p>
+<p>Based on the two Gaussian models, we can draw a boundary line.<br><img src="https://img-blog.csdnimg.cn/20200415164325354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="Prediction"><a href="#Prediction" class="headerlink" title="Prediction"></a>Prediction</h2><p>$\arg\max\limits_yP(y|x) &#x3D; \arg\max\limits_y \frac{P(x|y)P(y)}{P(x)}&#x3D;\arg\max\limits_yP(x|y)P(y)$<br>($P(x)$ is a constant)</p>
+<h2 id="amp-Logistic-Regression"><a href="#amp-Logistic-Regression" class="headerlink" title="&amp; Logistic Regression"></a>&amp; Logistic Regression</h2><p>图片是我的笔记<br><img src="https://img-blog.csdnimg.cn/20200415165918546.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>The picture shows when our data is 1D the function looks like <strong>Sigmoid function</strong>. Actually, it is Sigmoid function and it also applys to higher dimension. I won’t prove it here.</li>
+<li>GDA is a stricter version of logistic regression because the data has to follow Gaussian distribution. </li>
+<li>When the data follows Gaussian distribution or the data is very big(according to the central limit theorem), GDA works better than logistic regression.</li>
+<li>Also, the data follows Gaussian distribution so the model has <strong>no local optima</strong>.</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">machine learning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Course Notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/16/Gaussian-Discriminative-Analysis/">Show All >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -352,6 +1158,18 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">machine learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Course Notes</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">math</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
