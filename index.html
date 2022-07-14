@@ -261,7 +261,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="奇异值分解-Singular-Value-Decomposition"><a href="#奇异值分解-Singular-Value-Decomposition" class="headerlink" title="奇异值分解 Singular Value Decomposition"></a>奇异值分解 Singular Value Decomposition</h1><hr>
-<p>[toc]</p>
 <h2 id="奇异值分解的定义与性质"><a href="#奇异值分解的定义与性质" class="headerlink" title="奇异值分解的定义与性质"></a>奇异值分解的定义与性质</h2><h3 id="定义与定理"><a href="#定义与定理" class="headerlink" title="定义与定理"></a>定义与定理</h3><p>$$<br>A &#x3D; U\Sigma V^T<br>$$<br>A是任意矩阵（$m\times n$），连方阵都不要求 。<br>$U$是正交矩阵orthogonal matrix($m\times m$)，列向量被称为左奇异向量<br>$V$是正交矩阵orthogonal matrix($n\times n$)，列向量被称为右奇异向量<br>$\Sigma$是矩形对角矩阵rectangular diagonal matrix($m\times n$)，所有元素非负，且按照降序排列$\Sigma &#x3D; diag(\sigma_1, \sigma_2,…,\sigma_p)$<br>$\sigma$为奇异值</p>
 <p>奇异值分解定理：任意矩阵A一定存在奇异值分解</p>
 <h3 id="紧奇异值分解和截断奇异值分解"><a href="#紧奇异值分解和截断奇异值分解" class="headerlink" title="紧奇异值分解和截断奇异值分解"></a>紧奇异值分解和截断奇异值分解</h3><p>$A &#x3D; U\Sigma V^T$被称为A的完全奇异值分解full SVD, 紧奇异值分解compact SVD是与原始矩阵等秩的奇异值分解；截断奇异值分解truuncate SVD是比原始矩阵低秩的奇异值分解</p>
@@ -529,17 +528,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="EM-Algorithm-EM算法"><a href="#EM-Algorithm-EM算法" class="headerlink" title="EM Algorithm EM算法"></a>EM Algorithm EM算法</h1><hr>
-<p>EM algorithm is a iterative optimazation algorithm. EM is the abbreviation of expectation maximization. EM do not apply for all the optimization problems.</p>
+<p>EM algorithm is a iterative optimization algorithm. EM is the abbreviation of expectation maximization. EM do not apply for all the optimization problems.</p>
 <p>Remember! EM always converge but it can be a local optima.</p>
-<p>EM applys for GMM, K-Means clustering, HMM, etc. </p>
+<p>EM applies for GMM, K-Means clustering, HMM, etc. </p>
 <h2 id="Jensen’s-Inequality"><a href="#Jensen’s-Inequality" class="headerlink" title="Jensen’s Inequality"></a>Jensen’s Inequality</h2><p>convex function $f, f’’ &gt; 0$;  concave function $f, f’’&lt;0$<br>$E[f(x)] \geq f(E[x]) \ \ \ \ \ f$ is convex<br>$E[f(x)] \leq f(E[x]) \ \ \ \ \ f$ is concave<br>If and only if $x$ is constant equal sign is taken.<br>图片<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40991784">来源</a><br><img src="https://img-blog.csdnimg.cn/20200415213206714.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="EM"><a href="#EM" class="headerlink" title="EM"></a>EM</h2><p>${z_i}_{i&#x3D;1\sim N}$ — $x_i$ belongs to $(z_i)^{th}$ distribution<br>$Q_i(z_i)$ — the probability distribution of $z_i$<br>(You can also turn $z_i$ into a vector and each dimension represents the probability.)</p>
 <hr>
 <p><strong>MLE</strong>:<br>$\max E(\theta)$<br>$E(\theta) &#x3D; \prod\limits_{i&#x3D;1}^N P(x_i|\theta) &#x3D; \prod\limits_{i&#x3D;1}^N [\sum\limits_{z_i}P(x_i, z_i | \theta)]$<br>$l(\theta) &#x3D; \sum\limits_{i&#x3D;1}^N\log[\sum\limits_{z_i} P(x_i,z_i|\theta)]$</p>
 <hr>
 <p>$\theta_i$ — the parameter of $i^{th}$ iteration</p>
-<p>$randomize \ \theta_0 \<br> \ \ \ \ \ \  while (!converge) \$<br>      {<br>$\ \ \ \ \ \ \ \ E-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  Q_i(z_i) &#x3D; \frac{P(x_i, z_i|\theta_k)}{\sum\limits_{z_i} P(x_i,z_i|\theta_k)} \<br>\ \ \ \ \ \ \ \ M-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \theta_{k+1} &#x3D;  \arg\max\limits_{\theta}\sum\limits_{i&#x3D;1}^N\sum\limits_{z_i} Q_i(z_i)\log \frac{P(x_i,z_i|\theta)}{Q_i(z_i)}\$<br>       }</p>
-<p>Jensen’s inequality applys in M-step and the prove of convergence.</p>
+<p>randomize theta_0<br>while (!converge)<br>{<br>$$<br>\ \ \ \ \ \ \ \ E-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  Q_i(z_i) &#x3D; \frac{P(x_i, z_i|\theta_k)}{\sum\limits_{z_i} P(x_i,z_i|\theta_k)} \<br>\ \ \ \ \ \ \ \ M-step: \ \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \theta_{k+1} &#x3D;  \arg\max\limits_{\theta}\sum\limits_{i&#x3D;1}^N\sum\limits_{z_i} Q_i(z_i)\log \frac{P(x_i,z_i|\theta)}{Q_i(z_i)}\<br>$$<br>}</p>
+<p>Jensen’s inequality applies in M-step and the prove of convergence.</p>
 
       
 
@@ -895,13 +894,14 @@
       
         <h1 id="Principle-Component-Analysis-主成分分析"><a href="#Principle-Component-Analysis-主成分分析" class="headerlink" title="Principle Component Analysis 主成分分析"></a>Principle Component Analysis 主成分分析</h1><hr>
 <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>PCA is one of the most important and widely used dimension reduction algorithm. Other dimension reduction algorithm include LDA, LLE and Laplacian Eigenmaps.<br>You can regard PCA as a one layer neural network with nD input and mD output.<br><strong>PCA reject nD data to mD with the maximum various.</strong><br><img src="https://img-blog.csdnimg.cn/2020041915071143.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTI4NjgxMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>We want to reduce data from nD to mD.<br>$Y  &#x3D; AX$<br>$Y - R^{m<em>1} \ A- R^{m</em>n} \ X-R^{n*1}$ </p>
-<p>$A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
-<p>$\left{\begin{array}{l}<br>Y &#x3D; A(X - \bar{X}) \<br>\bar x &#x3D; E(X) &#x3D; \frac1p\sum\limits_{p&#x3D;1}^Px_p<br>\end{array}\right.$</p>
-<p>$\max \sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2$<br>$\bar y_i &#x3D; \frac1p\sum\limits_{i&#x3D;1}^Py_i &#x3D; \frac {a_i}{p}(\sum\limits_{i&#x3D;1}^Px_i - p\bar x) &#x3D; 0$<br>$\sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2 &#x3D;  \sum\limits_{i&#x3D;1}^P[a_1(x_i - \bar x)]^2 \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;\sum\limits_{i&#x3D;1}^Pa_1[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\sum\limits_{i&#x3D;1}^P[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\Sigma a_1^T$<br>$\Sigma$ – covariance matrix</p>
-<p>Our target:<br>$\left{\begin{array}{l}<br>\max  \ \  a_1\Sigma a_1^T\<br>s.t. \ \ \ \ \ a_1a_1^T &#x3D; ||a_1||^2 &#x3D; 1<br>\end{array}\right.$<br>apply Lagrange multiplier method:<br>$E(a_1) &#x3D; a_1\Sigma a_1^T - \lambda_1(a_1a_1^T -1) \<br>\frac{\partial E}{\partial a_1} &#x3D; (\Sigma a_1^T - \lambda_1a_1^T)^T &#x3D; 0 \<br>\Sigma a_1^T &#x3D; \lambda_1a_1^T$<br>$\lambda_1$ is the largest eigenvalue of $\Sigma$, and $a_1$ is its eigenvector.</p>
-<p>$\left{\begin{array}{l}<br>\max  \ \  a_2\Sigma a_2^T\<br>s.t. \ \ \ \ \ a_2a_2^T &#x3D; ||a_2||^2 &#x3D; 1<br>\end{array}\right.$<br>……(same method)<br>$\lambda_2$ is the second largest eigenvalue of $\Sigma$, and $a_2$ is its eigenvector.</p>
-<p>…..</p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>We want to reduce data from nD to mD.<br>$$<br>Y  &#x3D; AX<br>Y - R^{m<em>1} \ A- R^{m</em>n} \ X-R^{n*1} \</p>
+<p>A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix} \</p>
+<p>\left{\begin{array}{l}<br>Y &#x3D; A(X - \bar{X}) \<br>\bar x &#x3D; E(X) &#x3D; \frac1p\sum\limits_{p&#x3D;1}^Px_p<br>\end{array}\right. \</p>
+<p>\max \sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2 \<br>\bar y_i &#x3D; \frac1p\sum\limits_{i&#x3D;1}^Py_i &#x3D; \frac {a_i}{p}(\sum\limits_{i&#x3D;1}^Px_i - p\bar x) &#x3D; 0 \<br>\sum\limits_{i&#x3D;1}^P(y_i - \bar y_i)^2 &#x3D;  \sum\limits_{i&#x3D;1}^P[a_1(x_i - \bar x)]^2 \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;\sum\limits_{i&#x3D;1}^Pa_1[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\sum\limits_{i&#x3D;1}^P[(x_i-\bar x)(x_i - \bar x)^T]a_1^T \<br>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &#x3D;a_1\Sigma a_1^T<br>$$</p>
+<p>$\Sigma$ – covariance matrix</p>
+<p>Our target:<br>$$<br>\left{\begin{array}{l}<br>\max  \ \  a_1\Sigma a_1^T\<br>s.t. \ \ \ \ \ a_1a_1^T &#x3D; ||a_1||^2 &#x3D; 1<br>\end{array}\right.<br>$$<br>apply Lagrange multiplier method:<br>$$<br>E(a_1) &#x3D; a_1\Sigma a_1^T - \lambda_1(a_1a_1^T -1) \<br>\frac{\partial E}{\partial a_1} &#x3D; (\Sigma a_1^T - \lambda_1a_1^T)^T &#x3D; 0 \<br>\Sigma a_1^T &#x3D; \lambda_1a_1^T<br>$$<br>$\lambda_1$ is the largest eigenvalue of $\Sigma$, and $a_1$ is its eigenvector.</p>
+<p>$$<br>\left{\begin{array}{l}<br>\max  \ \  a_2\Sigma a_2^T\<br>s.t. \ \ \ \ \ a_2a_2^T &#x3D; ||a_2||^2 &#x3D; 1<br>\end{array}\right.<br>$$</p>
+<p>(same method)<br>$\lambda_2$ is the second largest eigenvalue of $\Sigma$, and $a_2$ is its eigenvector.</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>①    find the value of $\Sigma$<br>②   find the eigenvalues $a_i$ of $\Sigma$ and sort them<br>③  normalize $a_i$, let $a_1a_1^T&#x3D;1$<br>④ $A &#x3D; \begin{bmatrix} -a_1-\ -a_2- \ … \ -a_m- \end{bmatrix}  Y &#x3D; \begin{bmatrix} a_1(x-\bar{x})\ a_2(x-\bar{x}) \ … \ a_m(x-\bar{x}) \end{bmatrix}$</p>
 <p>⑤   $Y &#x3D; A(X - \bar{X})$</p>
 
