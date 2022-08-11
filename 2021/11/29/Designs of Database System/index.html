@@ -1,0 +1,586 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Designs of Database System | Haron's Blog</title><meta name="keywords" content="Course Design,SQL,Word Embedding"><meta name="author" content="Haron Wan,haronwan926@gmail.com"><meta name="copyright" content="Haron Wan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Designs of Database System ——Paper++《数据库基础》课程设计 1 设计目的​        《数据库基础》课程设计是计算机科学与技术专业集中实践性环节之一，旨在让同学们加深对数据库基础理论和基本知识的理解，掌握设计数据库管理系统的基本方法，锻炼运用知识解决实际问题的动手能力。 2 任务与要求​        要求学生从给定的设计题目中进行选择，进行需求分析，概念设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Designs of Database System">
+<meta property="og:url" content="http://example.com/2021/11/29/Designs%20of%20Database%20System/index.html">
+<meta property="og:site_name" content="Haron&#39;s Blog">
+<meta property="og:description" content="Designs of Database System ——Paper++《数据库基础》课程设计 1 设计目的​        《数据库基础》课程设计是计算机科学与技术专业集中实践性环节之一，旨在让同学们加深对数据库基础理论和基本知识的理解，掌握设计数据库管理系统的基本方法，锻炼运用知识解决实际问题的动手能力。 2 任务与要求​        要求学生从给定的设计题目中进行选择，进行需求分析，概念设">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/07/15/uhBzgafHMnKjsU7.jpg">
+<meta property="article:published_time" content="2021-11-29T03:39:44.000Z">
+<meta property="article:modified_time" content="2022-08-11T09:39:31.908Z">
+<meta property="article:author" content="Haron Wan">
+<meta property="article:tag" content="Course Design">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Word Embedding">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/15/uhBzgafHMnKjsU7.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/11/29/Designs%20of%20Database%20System/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Haron Wan","link":"Link: ","source":"Source: Haron's Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Designs of Database System',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-11 17:39:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/02/18/JbzYS5fKcOAaVMU.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2022/07/15/uhBzgafHMnKjsU7.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Haron's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Designs of Database System</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-11-29T03:39:44.000Z" title="Created 2021-11-29 11:39:44">2021-11-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-08-11T09:39:31.908Z" title="Updated 2022-08-11 17:39:31">2022-08-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">8.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>31min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Designs of Database System"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Designs-of-Database-System-——Paper"><a href="#Designs-of-Database-System-——Paper" class="headerlink" title="Designs of Database System ——Paper++"></a>Designs of Database System ——Paper++</h1><p>《数据库基础》课程设计</p>
+<h2 id="1-设计目的"><a href="#1-设计目的" class="headerlink" title="1 设计目的"></a>1 设计目的</h2><p>​        《数据库基础》课程设计是计算机科学与技术专业集中实践性环节之一，旨在让同学们加深对数据库基础理论和基本知识的理解，掌握设计数据库管理系统的基本方法，锻炼运用知识解决实际问题的动手能力。</p>
+<h2 id="2-任务与要求"><a href="#2-任务与要求" class="headerlink" title="2 任务与要求"></a>2 任务与要求</h2><p>​        要求学生从给定的设计题目中进行选择，进行需求分析，概念设计、逻辑设计，数据库设计；完成表结构、表之间关联，视图定义、触发器定义、索引以及安全性的实现；用SQL语句在SQLite系统中实现数据库的数据输入、查询、更新和输出；给出实现效果截图及部分测试结果。</p>
+<h2 id="3-个人文献管理系统—Paper"><a href="#3-个人文献管理系统—Paper" class="headerlink" title="3 个人文献管理系统—Paper++"></a>3 个人文献管理系统—Paper++</h2><h3 id="3-1-引言"><a href="#3-1-引言" class="headerlink" title="3.1 引言"></a>3.1 引言</h3><p>​        随着我在专业学习上不断的深入，以及个人兴趣的发展，我开始关注人工智能领域下的自然语言处理方向，决定将这个方向作为自己今后学习研究的主要方向，并且开始做一些基础的科研工作。在这些科研工作中往往需要阅读大量的学术文献，越来越多的文献使得这种简单的管理方式不足以满足我的要求。除此之外，想成为优秀的科研人员需要我养成定时阅读论文的习惯。目前市面上有一些论文管理软件如Octave、Endnote、Mendeley、Zotero等，但是其功能并不完全符合我的需求。于是我为自己设计了一个量身定做的个人文献管理系统Paper++。</p>
+<h3 id="3-2-需求分析"><a href="#3-2-需求分析" class="headerlink" title="3.2 需求分析"></a>3.2 需求分析</h3><h3 id="3-2-1-系统的主要任务"><a href="#3-2-1-系统的主要任务" class="headerlink" title="3.2.1  系统的主要任务"></a>3.2.1  系统的主要任务</h3><h4 id="3-2-1-1-系统功能描述"><a href="#3-2-1-1-系统功能描述" class="headerlink" title="3.2.1.1 系统功能描述"></a>3.2.1.1 系统功能描述</h4><p>​        总的来说，Paper++的主要任务包括整理论文和为定期阅读论文的功能。这需要实现论文、作者、关键词等信息的增删改查；实现完整论文列表的查看，手动选择论文的阅读优先级；实现论文信息的删除；实现论文信息的查找，允许按照标题、作者、关键词进行查找。</p>
+<h4 id="3-2-1-2数据库完整性要求"><a href="#3-2-1-2数据库完整性要求" class="headerlink" title="3.2.1.2数据库完整性要求"></a>3.2.1.2数据库完整性要求</h4><h5 id="3-2-1-2-1实体完整性"><a href="#3-2-1-2-1实体完整性" class="headerlink" title="3.2.1.2.1实体完整性"></a>3.2.1.2.1实体完整性</h5><p>​        Paper++共涉及到11个表，对所有表进行了主键id的设置。所有主键均设置为自增主键，即在每次插入新的数据后数据库引擎会自动增加1，删除数据行也不影响id。</p>
+<h5 id="3-2-1-2-3用户定义完整性"><a href="#3-2-1-2-3用户定义完整性" class="headerlink" title="3.2.1.2.3用户定义完整性"></a>3.2.1.2.3用户定义完整性</h5><ol>
+<li>Paper.read, read属性表示用户是否已经阅读过该论文，read列的取值只能为0和1，0表示没有阅读过，1表示已经阅读过。实际上可以将这一属性看作布尔类型。</li>
+<li>Paper.rank rank属性表示用户定义的论文的阅读优先级，rank初始值为0，用户可以将其值设置为1，2，3，4，5，数字越大代表优先级越高。</li>
+<li>Job.class class属性代表每个工作的类别，class属性只能为’University’， ‘Company’， ‘Institute’， ‘Hospital’， ‘None’中的一个。</li>
+<li>在PLog，KLog，ALog，ReadLog四个日志表中均有entry_date属性。entry_date属性表示插入日志的时间，四个表中entry_date属性均被设置为非空（NOT NULL）</li>
+</ol>
+<h5 id="3-2-1-2-3-参照完整性"><a href="#3-2-1-2-3-参照完整性" class="headerlink" title="3.2.1.2.3 参照完整性"></a>3.2.1.2.3 参照完整性</h5><p>​        由于Paper++的数据库结构中涉及到多处多对多的联系，我采用了表A，表A2B，表B的形式进行表示，其中表A2B采用外键联系表A和表B。除此以外，部分日志表通过外键连接对应表以记录数据。所有的外键均遵从外键的要求：非空；指向的为某个表的主键。具体包括：</p>
+<ol>
+<li><p>​    P2K表有pid和kid属性，分别对应Paper表和Keywords表的主键。</p>
+</li>
+<li><p>​    P2A表有pid和aid属性，分别对应Paper表和Authors表的主键。</p>
+</li>
+<li><p>​    A2J表有aid和jid属性，分别对应Authors表和Job表的主键。</p>
+</li>
+<li><p>​    PLog表有pid属性，对应Paper表的主键。</p>
+</li>
+<li><p>​    KLog表有kid属性，对应Keywords表的主键。</p>
+</li>
+<li><p>​    ALog表有aid属性，对应Authors表的主键。</p>
+</li>
+<li><p>​    ReadLog表有pid属性，对应Paper表的主键。</p>
+</li>
+</ol>
+<h5 id="3-2-1-2-4-数据库安全性"><a href="#3-2-1-2-4-数据库安全性" class="headerlink" title="3.2.1.2.4 数据库安全性"></a>3.2.1.2.4 数据库安全性</h5><p>​        考虑到实际情况，Paper++为文献整理、阅读软件，而涉及到的论文均来源于开放的学术数据库，不涉及到机密的问题，所以不设置用户角色，不进行角色授权。仅对论文的增删查改进行设置，所有的设置通过Python代码实现。</p>
+<ol>
+<li><p>不对用户开放修改论文基本信息（标题、作者、摘要）的权限。</p>
+</li>
+<li><p>限制用户一次只能进行一篇论文的添加、修改或是删除，防止出现短时间内注入大量信息的情况。</p>
+</li>
+<li><p>不允许重复插入相同的论文、关键词等。</p>
+</li>
+</ol>
+<h3 id="3-2-2-系统功能描述"><a href="#3-2-2-系统功能描述" class="headerlink" title="3.2.2 系统功能描述"></a>3.2.2 系统功能描述</h3><p>​        系统的主要任务包括整理论文和为定期阅读论文的习惯提供帮助。具体分析如下：</p>
+<h4 id="3-2-2-1-添加论文模块"><a href="#3-2-2-1-添加论文模块" class="headerlink" title="3.2.2.1 添加论文模块"></a>3.2.2.1 添加论文模块</h4><p>​        对于本地论文pdf文件，首先读取pdf文件，然后对信息进行处理，将部分内容展示给用户，由用户手动输入标题、作者、作者单位，其余信息由程序自动提取。对于arXiv和PubMed两个来源的论文，采用爬虫技术从网页获取论文的信息并且直接下载论文。最后将论文信息插入数据库。对于所有论文，程序自动对摘要进行关键词的提取。</p>
+<h4 id="3-2-2-2-展示全部论文"><a href="#3-2-2-2-展示全部论文" class="headerlink" title="3.2.2.2 展示全部论文"></a>3.2.2.2 展示全部论文</h4><p>从视图中中查询数据，并且对多对多的关系进行了整合，最终进行展示。</p>
+<p>在此界面用户可以对论文条目进行删除，程序清除数据库中对应表中的信息。</p>
+<p>同时，用户还可以对阅读优先级、阅读注释的编辑和修改，并将相应信息存入数据库。在此界面还可以点击按钮查看生成的关键词词云图。</p>
+<h4 id="3-2-2-3-查询模块"><a href="#3-2-2-3-查询模块" class="headerlink" title="3.2.2.3 查询模块"></a>3.2.2.3 查询模块</h4><p>用户可以对标题、作者、关键词三个字段进行查询。其中论文题目中包含查询字段即可被检索到；而查询作者、关键词则必须拼写正确。所有的查询均实现了对大小写的兼容。</p>
+<h4 id="3-2-2-4-阅读论文模块"><a href="#3-2-2-4-阅读论文模块" class="headerlink" title="3.2.2.4 阅读论文模块"></a>3.2.2.4 阅读论文模块</h4><p>​        在此界面会按照优先级的顺序展示所有未读的论文，用户双击论文条目即可使用用户本地的pdf阅读器打开论文文件，Paper++不包含pdf阅读器。</p>
+<p>​        在此界面用户还可以进行阅读论文的数量和提醒时间进行设置，Paper++实现按照阅读优先级推送论文，并展示与其相关性最强的论文题目。其中计算论文相关性通过深度学习的方法实现。 </p>
+<p><img src="https://s2.loli.net/2022/08/11/sqmrILcTpoA7RJ1.png" alt="image001.png"></p>
+<p>图3-1 Paper++功能模块图</p>
+<h2 id="3-3-概念设计"><a href="#3-3-概念设计" class="headerlink" title="3.3 概念设计"></a>3.3 概念设计</h2><h3 id="3-3-1-连接的设计"><a href="#3-3-1-连接的设计" class="headerlink" title="3.3.1 连接的设计"></a>3.3.1 连接的设计</h3><p>​        Paper++中涉及到了Paper（论文），Authors（作者），Keywords（关键词），Job（作者单位）四个主要的实体。这其中Paper和Authors，，Authors和Job，Paper和Keyowrds是多对多的联系，例如一篇论文有多个作者，而一个作者会参与多篇论文。Author和Job看似是多对一的联系，即多个作者工作工作于同一个单位，实际上这没有考虑到一些特殊情况。例如A在清华大学就读博士，毕业后在阿里巴巴工作，期间都有论文发表，那么A的单位就应该有清华大学和阿里巴巴两个，除此之外，还有一些作者有兼职的情况。</p>
+<p>​        除此之外，我创建了四个表：PLog，Klog，Alog，ReadLog分别用来存储Paper插入。Keywords表插入，Authors表插入和用户阅读论文日志记录。其中用户阅读论文的日志只需监视Paper表中read属性即可实现。这些表与对应的主表一对一连接。</p>
+<h3 id="3-3-2-属性的设计"><a href="#3-3-2-属性的设计" class="headerlink" title="3.3.2 属性的设计"></a>3.3.2 属性的设计</h3><p>​        根据论文实际包含的属性和系统开发中实现功能所需要的属性，初步设计出各表的属性。其中四个日志表设置为弱实体集，不设置主键，仅用外键与对应的表连接。P2K，P2A，A2J为联系。</p>
+<p>​        Paper：pid（id），title（论文标题）， abstract（摘要），read（是否已阅读论文），rank（用户定义优先级），note（用户定义注释），path（论文在本地的存储路径），token（论文特征向量）</p>
+<ul>
+<li><p>Keyword:kid（id），keyword（关键词内容）</p>
+</li>
+<li><p>Authors:aid（id），aname（作者名字）</p>
+</li>
+<li><p>Job：jid（id），jname（单位名称），class（单位类型）</p>
+</li>
+<li><p>PLog：pid（论文id），entry_date（时间）</p>
+</li>
+<li><p>ALog：aid（作者id），entry_date（时间）</p>
+</li>
+<li><p>KLog：kid（关键词id），entry_date（时间）</p>
+</li>
+<li><p>ReadLog：pid（论文id），title（论文题目）, entry_date（时间）</p>
+</li>
+<li><p>P2K： id，pid（论文id），kid（关键词id），title, keyword</p>
+</li>
+<li><p>P2A： id，title, aname)</p>
+</li>
+<li><p>A2J： id，aname, jname</p>
+</li>
+</ul>
+<h3 id="3-3-3-E-R图"><a href="#3-3-3-E-R图" class="headerlink" title="3.3.3 E-R图"></a>3.3.3 E-R图</h3><p><img src="https://s2.loli.net/2022/08/11/DNnG739vgairKsm.png" alt="image002.png"></p>
+<p>图3-2 Paper++ E-R图</p>
+<h2 id="3-4-逻辑设计"><a href="#3-4-逻辑设计" class="headerlink" title="3.4 逻辑设计"></a>3.4 逻辑设计</h2><h3 id="3-4-1-关系模式优化"><a href="#3-4-1-关系模式优化" class="headerlink" title="3.4.1 关系模式优化"></a>3.4.1 关系模式优化</h3><p>​        分析Paper++涉及到的所有关系，对关系模式进行优化</p>
+<h4 id="3-4-1-1-合并关系"><a href="#3-4-1-1-合并关系" class="headerlink" title="3.4.1.1 合并关系"></a>3.4.1.1 合并关系</h4><p>​    关系在设计时已经达到最简，没有可以合并的关系。</p>
+<h4 id="3-4-1-2-关系的连接"><a href="#3-4-1-2-关系的连接" class="headerlink" title="3.4.1.2 关系的连接"></a>3.4.1.2 关系的连接</h4><p>​    通过视图的形式进行连接，Paper++定义了两个视图，分别是Paper_info和Author_info。我在设计联系表的时候特意加入被连接表的一些属性，使得在创建视图的时候更加简单，不需要访问联系另一端的表即可获得需要的信息。</p>
+<p>​        Paper_info连接Paper、Author、Keyword表，以获得所有关于论文的信息。具体包括Paper表的title、abstract、read、rank、note属性，P2K表的keyword属性，P2A表的aname属性。</p>
+<p>​        Author_info连接Authors、Job、Paper表，以获得所有关于作者的信息。具体包括Authors表的aname、jname属性，A2J表的class属性，P2A表的title属性。</p>
+<h4 id="3-4-1-3-关系的分解"><a href="#3-4-1-3-关系的分解" class="headerlink" title="3.4.1.3 关系的分解"></a>3.4.1.3 关系的分解</h4><p>​        分析Paper++涉及到的关系可以发现，所有关系均不符合垂直分解和水平分解的要求，既不需要进行分解。</p>
+<h3 id="3-4-2-外模式的设计"><a href="#3-4-2-外模式的设计" class="headerlink" title="3.4.2 外模式的设计"></a>3.4.2 外模式的设计</h3><ul>
+<li>视图的定义</li>
+</ul>
+<p>​        上文所述的视图时直接面向用户的，Paper表中的path、token属性以及各个表的id信息没有被放入视图中，因为这些属性对于用户没有意义，是为了实现系统功能二存在的。</p>
+<ul>
+<li>处理计算属性</li>
+</ul>
+<p>​        Paper表中的token属性是计算属性，一篇论文的token是对其所有关键词的词向量求和，token的计算时间较长，计算一篇论文的token大约需要30秒。所以我将其在插入表时一次计算完成并且将其设置为一个属性直接存储数据，需要时直接读取数据，而不是每次需要使用token时都进行计算。这节省了大量的时间，提升了用户使用体验。</p>
+<h3 id="3-4-3-关系模式"><a href="#3-4-3-关系模式" class="headerlink" title="3.4.3 关系模式"></a>3.4.3 关系模式</h3><p>​        根据E-R图可以得到强实体集Paper、Keywords、Authors、Job，弱实体集P2K、P2A、A2J，联系集PLog、ALog、KLog、ReadLog的关系模式，整理得到完整的关系模式：</p>
+<ul>
+<li><p>Paper (pid, title, abstract,read，rank, note, path, token, author, keyword)</p>
+</li>
+<li><p>Keywords (kid, keyword)</p>
+</li>
+<li><p>Authors (aid, aname,jname, jclass)</p>
+</li>
+<li><p>Job (jid, jname, class) </p>
+</li>
+<li><p>P2K (id, title, keyword)</p>
+</li>
+<li><p>P2A (id, title, aname)</p>
+</li>
+<li><p>A2J (id, aname, jname) </p>
+</li>
+<li><p>PLog (pid, entry_date)</p>
+</li>
+<li><p>ALog (aid, entry_date)</p>
+</li>
+<li><p>KLog (kid, entry_date)</p>
+</li>
+<li><p>ReadLog (pid, title, entry_date)</p>
+</li>
+</ul>
+<h2 id="3-5-物理结构设计"><a href="#3-5-物理结构设计" class="headerlink" title="3.5 物理结构设计"></a>3.5 物理结构设计</h2><h3 id="3-5-1-存取方法"><a href="#3-5-1-存取方法" class="headerlink" title="3.5.1 存取方法"></a>3.5.1 存取方法</h3><p>​        Paper++的dbPaper数据库采用索引存取的方法，我在四个需要经常访问的表Paper， Authors， Keywords， Job上的id一列创建了索引。id列在查询中经常使用，且在创建视图的连接过程中被使用，所以符合创建索引的要求。</p>
+<h3 id="3-5-2-存储结构"><a href="#3-5-2-存储结构" class="headerlink" title="3.5.2 存储结构"></a>3.5.2 存储结构</h3><p>​        考虑到实际情况，我将所有的表放于和程序代码相同的文件夹下，以便于用户使用，只需下载文件夹压缩包即可立即使用。对于Paper++的目标用户，即高年级本科生、硕士、博士研究生、高校科研人员、企业科研人员等来说，个人阅读、学习中涉及到的论文数量相对较小，不需要为此专门将数据库存放于磁盘中特定的位置以提高读写速度。</p>
+<p><img src="https://s2.loli.net/2022/08/11/Ow426EabgS9xtUW.png" alt="image003.png"></p>
+<p> 图3-3 Paper++数据库关系图</p>
+<h2 id="3-6-数据库实施"><a href="#3-6-数据库实施" class="headerlink" title="3.6 数据库实施"></a>3.6 数据库实施</h2><p>该部分所有代码均在实际SQLite语句上进行了必要化简和省略，详细代码见createTable.py, createView.py, createTrigger.py, createIndex.py四个文件。</p>
+<h3 id="3-6-1-表的定义"><a href="#3-6-1-表的定义" class="headerlink" title="3.6.1 表的定义"></a>3.6.1 表的定义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Paper</span><br><span class="line">(pid INTEGER PRIMARY KEY,</span><br><span class="line"> title TEXT,</span><br><span class="line"> abstract TEXT,</span><br><span class="line"> read INTEGER，</span><br><span class="line"> rank INTEGER,</span><br><span class="line"> note TEXT,</span><br><span class="line"> path TEXT,</span><br><span class="line"> token TEXT)</span><br><span class="line"></span><br><span class="line">Keywords</span><br><span class="line">(kid INTEGER PRIMARY KEY,</span><br><span class="line">keyword varchar(50))</span><br><span class="line"></span><br><span class="line">Authors</span><br><span class="line">(aid INTEGER PRIMARY KEY,</span><br><span class="line"> aname varchar(100))</span><br><span class="line"> </span><br><span class="line">Job</span><br><span class="line">(jid INTEGER PRIMARY KEY,</span><br><span class="line"> jname varchar(200),</span><br><span class="line"> class varchar(200))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​        以下表格均为联系表或日志表，仅作简略展示。外键对应前面所述表中同名的属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">P2K (id, (pid, kid), title, keyword);</span><br><span class="line">P2A (id, (pid, aid), title, aname);</span><br><span class="line">A2J (id, (aid, jid), aname, jname);</span><br><span class="line">PLog (id, pid, entry_date);</span><br><span class="line">ALog (id, aid, entry_date);</span><br><span class="line">KLog (id, kid, entry_date);</span><br><span class="line">ReadLog (id, pid, title, entry_date);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-6-2-视图的定义"><a href="#3-6-2-视图的定义" class="headerlink" title="3.6.2 视图的定义"></a>3.6.2 视图的定义</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Paper_info</span><br><span class="line">SELECT Paper.title, P2A.aname, Paper.abstract, Paper.read, Paper.rank, Paper.note, P2K.keyword</span><br><span class="line">WHERE  P2K.pid = Paper.pid AND P2A.pid = Paper.pid</span><br></pre></td></tr></table></figure>
+
+
+
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Author_info</span><br><span class="line">SELECT Authors.aname, Authors.jname, Job.class, Paper.title </span><br><span class="line">WHERE Authors.aid = A2J.aid AND A2J.jid = Job.jid AND Authors.aid = P2A.aid AND Paper.pid = P2A.pid</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-6-3-触发器的定义"><a href="#3-6-3-触发器的定义" class="headerlink" title="3.6.3 触发器的定义"></a>3.6.3 触发器的定义</h3><p>​        以下三个触发器用于记录Paper，Keywords，Authors三个表的写入日志。NULL对应自增主键列，datetime(‘now’, ‘localtime’)用于获得时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Paper_log AFTER INSERT ON Paper</span><br><span class="line">INSERT INTO PLog VALUES (NULL, datetime(&#x27;now&#x27;, &#x27;localtime&#x27;))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Keyword_log AFTER INSERT ON Keywords</span><br><span class="line">INSERT INTO KLog VALUES (NULL, datetime(&#x27;now&#x27;, &#x27;localtime&#x27;))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Author_log AFTER INSERT ON Authors</span><br><span class="line">INSERT INTO ALog VALUES (NULL, datetime(&#x27;now&#x27;, &#x27;localtime&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>​        </p>
+<p>​        Read_log触发器用于记录用户阅读论文，new.title用于获得当前用户正在阅读论文的题目，NULL对应自增主键列，datetime(‘now’, ‘localtime’)用于获得时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Read_log AFTER UPDATE OF read ON Paper</span><br><span class="line">WHEN read=1</span><br><span class="line">INSERT INTO ReadLog VALUES (NULL, new.title, datetime(&#x27;now&#x27;, &#x27;localtime&#x27;))</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-6-4-索引的定义"><a href="#3-6-4-索引的定义" class="headerlink" title="3.6.4 索引的定义"></a>3.6.4 索引的定义</h3><p>我在四个主要表上建立了索引，索引可以帮助我在查询时减少检索的时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Paper_index ON Paper (pid)</span><br><span class="line">Keyword_index ON Keywords (kid)</span><br><span class="line">Author_index ON Authors (aid)</span><br><span class="line">Job_index ON Job (jid)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-7系统实现和测试"><a href="#3-7系统实现和测试" class="headerlink" title="3.7系统实现和测试"></a>3.7系统实现和测试</h2><h3 id="3-7-1-模块流程图"><a href="#3-7-1-模块流程图" class="headerlink" title="3.7.1 模块流程图"></a>3.7.1 模块流程图</h3><p><img src="https://s2.loli.net/2022/08/11/cDaMB6ze317PY5K.png" alt="image004.png"></p>
+<p>图3-4 Paper++模块流程图</p>
+<h3 id="3-7-2-开发环境"><a href="#3-7-2-开发环境" class="headerlink" title="3.7.2 开发环境"></a>3.7.2 开发环境</h3><h4 id="3-7-2-1-主要开发环境"><a href="#3-7-2-1-主要开发环境" class="headerlink" title="3.7.2.1 主要开发环境"></a>3.7.2.1 主要开发环境</h4><ul>
+<li><p>Python&#x3D;&#x3D;3.9.7</p>
+</li>
+<li><p>SQLite&#x3D;&#x3D;3.35.5</p>
+</li>
+<li><p>sqlite3&#x3D;&#x3D;(2, 6, 0)</p>
+</li>
+<li><p>PyCharm Community Edition 2020.2.1 x64</p>
+</li>
+</ul>
+<h4 id="3-7-2-2-package"><a href="#3-7-2-2-package" class="headerlink" title="3.7.2.2 package"></a>3.7.2.2 package</h4><p>仅列出部分主要的Python包，详细内容见requirements.txt文件</p>
+<ul>
+<li><p>beautifulsoup4&#x3D;&#x3D;4.10.0</p>
+</li>
+<li><p>matplotlib&#x3D;&#x3D;3.4.3</p>
+</li>
+<li><p>nltk&#x3D;&#x3D;3.6.5</p>
+</li>
+<li><p>numpy&#x3D;&#x3D;1.21.2</p>
+</li>
+<li><p>pandas&#x3D;&#x3D;1.3.3</p>
+</li>
+<li><p>pdfminer3k&#x3D;&#x3D;1.3.4</p>
+</li>
+<li><p>Pillow&#x3D;&#x3D;8.3.2</p>
+</li>
+<li><p>requests&#x3D;&#x3D;2.25.1</p>
+</li>
+<li><p>scipy&#x3D;&#x3D;1.7.1</p>
+</li>
+<li><p>windnd&#x3D;&#x3D;1.0.7</p>
+</li>
+<li><p>wordcloud&#x3D;&#x3D;1.8.1</p>
+</li>
+</ul>
+<h3 id="3-7-3-核心代码"><a href="#3-7-3-核心代码" class="headerlink" title="3.7.3 核心代码"></a>3.7.3 核心代码</h3><ol>
+<li>插入一篇论文，修改涉及到的Paper表。修改Authors表、Job表的过程与此类似。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> conn:</span><br><span class="line">    tempdata = []</span><br><span class="line">    datas = conn.execute(<span class="string">&quot;SELECT * FROM Paper WHERE title=&#x27;&#123;&#125;&#x27;&quot;</span>.<span class="built_in">format</span>(title))</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> datas:</span><br><span class="line">      tempdata.append(data)</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(tempdata) == <span class="number">0</span>:</span><br><span class="line">    abstract = <span class="built_in">str</span>(abstract).replace(<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>)</span><br><span class="line">    sql1 = <span class="string">&quot;INSERT INTO Paper VALUES (NULL, &#x27;&#123;&#125;&#x27;, &#x27;&#123;&#125;&#x27;, 0, 0, &#x27;&#123;&#125;&#x27;, &#x27;&#123;&#125;&#x27;, &#x27;&#123;&#125;&#x27;)&quot;</span>.<span class="built_in">format</span>(title, abstract, note, path, paper_token)</span><br><span class="line">    cur.execute(sql1)</span><br><span class="line">    conn.commit()</span><br><span class="line">    <span class="keyword">del</span> tempdata</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    messagebox.showinfo(<span class="string">&#x27;提示&#x27;</span>, <span class="string">&#x27;please do not enter a paper twice&#x27;</span>)</span><br><span class="line">    exit()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>插入一篇论文，修改涉及到的P2K表。修改P2A表、A2J表的过程与此类似。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">sql4 = <span class="string">&quot;SELECT * FROM &#x27;Paper&#x27; WHERE title = &#x27;&#123;&#125;&#x27;;&quot;</span>.<span class="built_in">format</span>(title)</span><br><span class="line">pid = []</span><br><span class="line"><span class="keyword">with</span> conn:</span><br><span class="line">    pdatas = conn.execute(sql4)</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> pdatas:</span><br><span class="line">      data = <span class="built_in">str</span>(data).replace(<span class="string">&#x27;(&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      data = data.replace(<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      data = data.replace(<span class="string">&#x27;)&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      pid.append(<span class="built_in">int</span>(data.split(<span class="string">&#x27;, &#x27;</span>)[<span class="number">0</span>]))</span><br><span class="line">  </span><br><span class="line">  kid = []</span><br><span class="line">  <span class="keyword">with</span> conn:</span><br><span class="line">    <span class="keyword">for</span> keyword <span class="keyword">in</span> keywords:</span><br><span class="line">      sql7 = <span class="string">&quot;SELECT * FROM &#x27;Keywords&#x27; WHERE keyword=&#x27;&#123;&#125;&#x27;&quot;</span>.<span class="built_in">format</span>(keywo rd)</span><br><span class="line">      kdatas = conn.execute(sql7)</span><br><span class="line">      <span class="keyword">for</span> data <span class="keyword">in</span> kdatas:</span><br><span class="line">        data = <span class="built_in">str</span>(data).replace(<span class="string">&#x27;(&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        data = data.replace(<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        data = data.replace(<span class="string">&#x27;)&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        kid.append(<span class="built_in">int</span>(data.split(<span class="string">&#x27;, &#x27;</span>)[<span class="number">0</span>]))</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(kid)):</span><br><span class="line">    sql8 = <span class="string">&quot;INSERT INTO P2K VALUES (NULL, &#x27;&#123;&#125;&#x27;, &#x27;&#123;&#125;&#x27;, &#x27;&#123;&#125;&#x27;, &#x27;&#123;&#125;&#x27;)&quot;</span>.<span class="built_in">format</span>(pid[<span class="number">0</span>], kid[i], title, keywords[i])</span><br><span class="line">    cur.execute(sql8)</span><br><span class="line">    conn.commit()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>用户设置论文阅读优先级，注释，更新Paper表</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">rank, note, title</span>):</span><br><span class="line">  conn = sqlite3.connect(relative_to_assets(<span class="string">&#x27;dbPaper.db&#x27;</span>))</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Open database successfully&quot;</span>)</span><br><span class="line">  cur = conn.cursor()</span><br><span class="line">  sql1 = <span class="string">&quot;UPDATE Paper SET rank = &#123;&#125;, note = &#x27;&#123;&#125;&#x27; WHERE title = &#x27;&#123;&#125;&#x27;;&quot;</span>.<span class="built_in">format</span>(rank, note, title)</span><br><span class="line">  cur.execute(sql1)</span><br><span class="line">  conn.commit()</span><br><span class="line">  cur.close()</span><br><span class="line">  conn.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>从视图Paper_info中查询信息，使用Python中的set数据类型将其聚合。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_sql_value</span>():</span><br><span class="line">  paper_data = []</span><br><span class="line">  conn = sqlite3.connect(relative_to_assets(<span class="string">&#x27;database/dbPaper.db&#x27;</span>))</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Open database successfully&quot;</span>)</span><br><span class="line">  cur = conn.cursor()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">with</span> conn:</span><br><span class="line">    datas = conn.execute(<span class="string">&quot;SELECT * FROM Paper_info&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> datas:</span><br><span class="line">      paper_data.append(<span class="built_in">list</span>(data))</span><br><span class="line">  cur.close()</span><br><span class="line">  conn.close()</span><br><span class="line">  <span class="keyword">return</span> paper_data</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_data</span>(<span class="params">paper_data</span>):</span><br><span class="line">  papers = []</span><br><span class="line">  <span class="keyword">for</span> paper <span class="keyword">in</span> np.array(paper_data):</span><br><span class="line">    <span class="keyword">if</span> papers == [] <span class="keyword">or</span> check_not_in(paper[<span class="number">0</span>], papers):</span><br><span class="line">      paper = <span class="built_in">list</span>(paper)</span><br><span class="line">      paper = [paper[<span class="number">0</span>], &#123;paper[<span class="number">1</span>]&#125;, paper[<span class="number">2</span>], paper[<span class="number">3</span>], paper[<span class="number">4</span>], paper[<span class="number">5</span>], &#123;paper[<span class="number">6</span>]&#125;]</span><br><span class="line">      papers = <span class="built_in">list</span>(papers)</span><br><span class="line">      paper = <span class="built_in">list</span>(paper)</span><br><span class="line">      papers.append(paper)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      paper = np.array(paper)</span><br><span class="line">      papers = np.array(papers)</span><br><span class="line">      line = np.argwhere(papers == paper[<span class="number">0</span>])[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">      papers[line][<span class="number">1</span>].add(paper[<span class="number">1</span>])</span><br><span class="line">      papers[line][<span class="number">6</span>].add(paper[<span class="number">6</span>])</span><br><span class="line">  <span class="keyword">return</span> papers</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>arXiv爬虫获取论文信息和下载论文，PubMed爬虫与之类似。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">arxivSpider</span>:</span><br><span class="line"><span class="meta">  @staticmethod</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">get_arxiv_info</span>(<span class="params">arvcode</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">      url_info = <span class="string">&#x27;https://arxiv.org/abs/&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(arvcode</span><br><span class="line">      html = requests.get(url_info)</span><br><span class="line">      soup = BeautifulSoup(html.content, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">      subheader = soup.find(<span class="string">&#x27;div&#x27;</span>, class_=<span class="string">&quot;subheader&quot;</span>).get_text()</span><br><span class="line">      title = soup.find(<span class="string">&#x27;h1&#x27;</span>, class_=<span class="string">&quot;title mathjax&quot;</span>).get_text().split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">      ori_authors = soup.find(<span class="string">&#x27;div&#x27;</span>, class_=<span class="string">&quot;authors&quot;</span>).get_text().split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">      abstract = soup.find(<span class="string">&#x27;blockquote&#x27;</span>, class_=<span class="string">&quot;abstract mathjax&quot;</span>).get_text(). split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">      subheader = subheader.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      subheader = subheader.split(<span class="string">&#x27; &gt; &#x27;</span>)</span><br><span class="line">      authors = []</span><br><span class="line">      ori_authors = ori_authors.split(<span class="string">&#x27;, &#x27;</span>)</span><br><span class="line">                                                   </span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ori_authors)):</span><br><span class="line">        authors.append([ori_authors[i], <span class="literal">None</span>, <span class="literal">None</span>])</span><br><span class="line">      abstract = abstract.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      abstract = abstract.replace(<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>).strip()</span><br><span class="line">                                                   </span><br><span class="line">      <span class="keyword">try</span>:</span><br><span class="line">        arxivSpider.get_pdf(arvcode)</span><br><span class="line">      <span class="keyword">except</span>:</span><br><span class="line">        messagebox.showinfo(<span class="string">&quot;提示&quot;</span>, <span class="string">&quot;connection error&quot;</span>)</span><br><span class="line">      <span class="keyword">return</span> subheader, title, authors, abstract</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">      subheader = <span class="literal">None</span></span><br><span class="line">      title = <span class="literal">None</span></span><br><span class="line">      authors = <span class="literal">None</span></span><br><span class="line">      abstract = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">get_pdf</span>(<span class="params">arvcode</span>):</span><br><span class="line">    url_file = <span class="string">&#x27;https://arxiv.org/pdf/&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(arvcode) </span><br><span class="line">    req = requests.get(url_file) </span><br><span class="line">    bytes_io = io.BytesIO(req.content)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(relative_to_assets(<span class="string">&#x27;&#123;&#125;.pdf&#x27;</span>.<span class="built_in">format</span>(arvcode)), <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> file: </span><br><span class="line">      file.write(bytes_io.getvalue())</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>插入关键词</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ExtractKeywords.init_db(self)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> self.conn:</span><br><span class="line">  tempdata = []</span><br><span class="line">  datas = self.conn.execute(<span class="string">&quot;SELECT * FROM Keywords WHERE keyword=&#x27;&#123;&#125;&#x27; &quot;</span>.<span class="built_in">format</span>(word))</span><br><span class="line">  <span class="keyword">for</span> data <span class="keyword">in</span> datas:</span><br><span class="line">    tempdata.append(data)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(tempdata) == <span class="number">0</span>:</span><br><span class="line">  sql1 = <span class="string">&quot;INSERT INTO Keywords VALUES (NULL, &#x27;&#123;&#125;&#x27;)&quot;</span>.<span class="built_in">format</span>(word)</span><br><span class="line">  self.cur.execute(sql1)</span><br><span class="line">  self.conn.commit()</span><br><span class="line">  <span class="keyword">del</span> tempdata</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="7">
+<li>主界面点击按钮打开添加论文界面，所有打开新界面的方法与之类似。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add_paper_clicked</span>():</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;add paper button clicked&quot;</span>)</span><br><span class="line">  os.system(<span class="string">&quot;python &quot;</span> + <span class="built_in">str</span>(relative_to_assets(<span class="string">&quot;addPaper.py&quot;</span>)))</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="8">
+<li>双击打开论文，并且将该论文的read属性改为1</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">treeviewclick</span>(<span class="params">event, tree, paper_data</span>):</span><br><span class="line">  <span class="keyword">for</span> item <span class="keyword">in</span> tree.selection():</span><br><span class="line">    item_text = tree.item(item, <span class="string">&quot;values&quot;</span>)</span><br><span class="line">  cursor_title = item_text[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(paper_data.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> cursor_title == paper_data[i][<span class="number">1</span>]:</span><br><span class="line">      path = paper_data[i][-<span class="number">1</span>]</span><br><span class="line">      pid = paper_data[i][<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">   </span><br><span class="line">  conn = sqlite3.connect(relative_to_assets(<span class="string">&#x27;database/dbPaper.db&#x27;</span>))</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Open database successfully&quot;</span>)</span><br><span class="line">  cur = conn.cursor()</span><br><span class="line">  sql1 = <span class="string">&quot;UPDATE Paper SET read = 1 WHERE pid = &#x27;&#123;&#125;&#x27;;&quot;</span>.<span class="built_in">format</span>(pid)</span><br><span class="line">  <span class="built_in">print</span>(sql1)</span><br><span class="line">  cur.execute(sql1)</span><br><span class="line">  conn.commit()</span><br><span class="line">  cur.close()</span><br><span class="line">  conn.close()</span><br><span class="line"> </span><br><span class="line">  path = <span class="built_in">str</span>(path).replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;\\&#x27;</span>).split(<span class="string">&#x27;\\&#x27;</span>)</span><br><span class="line">  file_name = path[-<span class="number">1</span>]</span><br><span class="line">  file_path = <span class="string">&#x27;/&#x27;</span>.join(path[:-<span class="number">1</span>])</span><br><span class="line">  os.system(<span class="string">&quot;cd &#123;&#125;&quot;</span>.<span class="built_in">format</span>(file_path))</span><br><span class="line">  os.system(<span class="string">&quot;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(file_name))</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="9">
+<li>生成阅读论文界面按照优先级排序的索引，并计算相似度矩阵找到最相似的论文</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">paper_data = np.array(paper_data)</span><br><span class="line">index = np.argsort(paper_data, axis=<span class="number">0</span>)[:, <span class="number">4</span>][::-<span class="number">1</span>]</span><br><span class="line">paper_data = paper_data[index, :]</span><br><span class="line">paper_token = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> paper <span class="keyword">in</span> paper_data:</span><br><span class="line">  temp = <span class="built_in">str</span>(paper[-<span class="number">1</span>])[<span class="number">4</span>:-<span class="number">3</span>]</span><br><span class="line">  temp = temp.replace(<span class="string">&#x27;\\n&#x27;</span>, <span class="string">&#x27; &#x27;</span>).split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  token = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp)):</span><br><span class="line">    <span class="keyword">if</span> temp[i] != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">      <span class="keyword">try</span>:</span><br><span class="line">        token.append(<span class="built_in">float</span>(temp[i]))</span><br><span class="line">      <span class="keyword">except</span> ValueError:</span><br><span class="line">        token.append(<span class="built_in">float</span>(temp[i][:-<span class="number">3</span>]))</span><br><span class="line">  paper_token.append(token)</span><br><span class="line"></span><br><span class="line">norm_mx = []</span><br><span class="line">paper_token = np.array(paper_token)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(paper_token)):</span><br><span class="line">  norm_row = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(paper_token)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">      norm_row.append(np.linalg.norm(paper_token[i] - paper_token[j]))</span><br><span class="line">    <span class="keyword">except</span> TypeError:</span><br><span class="line">      norm_row.append(np.inf)</span><br><span class="line">  norm_mx.append(norm_row)</span><br><span class="line">  norm_mx[i][i] = np.inf</span><br><span class="line">    </span><br><span class="line"><span class="built_in">print</span>(norm_mx)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="10">
+<li>读取本地论文pdf文件，并进行处理</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">read_pdf</span>(<span class="params">path</span>):</span><br><span class="line">  <span class="built_in">print</span>(path)</span><br><span class="line">  fp = <span class="built_in">open</span>(<span class="string">&#x27;&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(path), <span class="string">&#x27;rb&#x27;</span>) </span><br><span class="line">  parser = PDFParser(fp) </span><br><span class="line">  document = PDFDocument(parser) </span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> document.is_extractable:</span><br><span class="line">    <span class="keyword">raise</span> PDFTextExtractionNotAllowed</span><br><span class="line">  <span class="keyword">else</span>: </span><br><span class="line">    rsrcmgr = PDFResourceManager()</span><br><span class="line">    laparams = LAParams()</span><br><span class="line">    device = PDFPageAggregator(rsrcmgr, laparams=laparams) </span><br><span class="line">    interpreter = PDFPageInterpreter(rsrcmgr, device) </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> PDFPage.create_pages(document):</span><br><span class="line">      interpreter.process_page(page) </span><br><span class="line">      layout = device.get_result()</span><br><span class="line">      text = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="keyword">for</span> x <span class="keyword">in</span> layout:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(x, LTTextBoxHorizontal):</span><br><span class="line">          text = text + <span class="built_in">str</span>(x.get_text())</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  <span class="keyword">return</span> text</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_head_abstract</span>(<span class="params">path</span>):</span><br><span class="line">  <span class="built_in">print</span>(path)</span><br><span class="line">  text = ReadLocalPdf.read_pdf(path)</span><br><span class="line">  text = text.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  text = text.replace(<span class="string">&#x27;\t&#x27;</span>, <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  text = text.split(<span class="string">&#x27;1 INTRODUCTION &#x27;</span>)[:<span class="number">1</span>]</span><br><span class="line">  head = text[<span class="number">0</span>].split(<span class="string">&#x27;ABSTRACT &#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    abstract = text[<span class="number">0</span>].split(<span class="string">&#x27;ABSTRACT&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">except</span> IndexError:</span><br><span class="line">    messagebox.showinfo(<span class="string">&quot;提示&quot;</span>, <span class="string">&quot;Can not extract info&quot;</span>)</span><br><span class="line">    exit()</span><br><span class="line">  head = head.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(head)):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(head[i]) &lt;= <span class="number">1</span>:        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:                     <span class="keyword">break</span></span><br><span class="line">  head = head[i:]</span><br><span class="line">  head = <span class="string">&quot; &quot;</span>.join(head)</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">return</span> head, abstract</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="11">
+<li>从预训练词向量中获取论文的特征向量token</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">open_w2v</span>():</span><br><span class="line">  <span class="keyword">with</span> <span class="built_in">open</span>(relative_to_assets(<span class="string">&quot;database/glove.6B.50d.txt&quot;</span>), <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> lines:</span><br><span class="line">    b_w2v = &#123;line.split()[<span class="number">0</span>]: np.array(line.split()[<span class="number">1</span>:]) <span class="keyword">for</span> line <span class="keyword">in</span> lines&#125;</span><br><span class="line">  w2v = &#123;<span class="built_in">str</span>(key, encoding=<span class="string">&#x27;utf-8&#x27;</span>): [<span class="built_in">float</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> val] <span class="keyword">for</span> key, val <span class="keyword">in</span> b_w2v.items()&#125;</span><br><span class="line">  <span class="keyword">return</span> w2v</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_features</span>(<span class="params">x</span>):</span><br><span class="line">  feat = []</span><br><span class="line">  dim = <span class="number">50</span></span><br><span class="line">  w2v = open_w2v()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x)):</span><br><span class="line">    <span class="keyword">if</span> x[i] <span class="keyword">in</span> w2v:</span><br><span class="line">      <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        feat = w2v[x[i]]</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        feat = np.add(feat, w2v[x[i]])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        feat = np.zeros(dim)</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        feat = np.add(feat, np.zeros(dim))</span><br><span class="line">  <span class="keyword">return</span> feat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_paper_token</span>(<span class="params">keywords</span>):</span><br><span class="line">  dim = <span class="number">50</span></span><br><span class="line">  paper_token = np.zeros(dim)</span><br><span class="line">  <span class="keyword">for</span> keyword <span class="keyword">in</span> keywords:</span><br><span class="line">    keyword_token = extract_features(keyword)</span><br><span class="line">    paper_token = np.add(paper_token, keyword_token)</span><br><span class="line">  <span class="keyword">return</span> paper_token</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="12">
+<li>生成词云图</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keyword_ls = np.squeeze(keyword_ls)</span><br><span class="line">keyword = <span class="string">&#x27;,&#x27;</span>.join(keyword_ls)</span><br><span class="line">my_wordcloud = WordCloud(scale=<span class="number">4</span>, width=<span class="number">1000</span>, height=<span class="number">700</span>)</span><br><span class="line">my_wordcloud.generate(keyword)</span><br><span class="line">plt.imshow(my_wordcloud)</span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-7-4-界面截图"><a href="#3-7-4-界面截图" class="headerlink" title="3.7.4 界面截图"></a>3.7.4 界面截图</h3><p><img src="https://s2.loli.net/2022/08/11/zvNbDy2hcks7VXm.png" alt="image005.png"></p>
+<p>图3-5 主界面</p>
+<p> <img src="https://s2.loli.net/2022/08/11/IvSFYiOpTeaAhQ9.png" alt="image006.png"></p>
+<p>图3-6 添加论文界面</p>
+<p> <img src="https://s2.loli.net/2022/08/11/mDVhyWb23jPSNJp.png" alt="image007.png"></p>
+<p>图3-7 读取本地论文小工具</p>
+<p> <img src="https://s2.loli.net/2022/08/11/DnoWaRiGmSVqQ8Z.png" alt="image008.png"></p>
+<p>图3-8 搜索界面</p>
+<p> <img src="https://s2.loli.net/2022/08/11/7ZhtvjC9DXfPauw.png" alt="image009.png"></p>
+<p>图3-9 搜索界面（按照题目搜索）</p>
+<p> <img src="https://s2.loli.net/2022/08/11/8voADQlukPdy5zi.png" alt="image010.png"></p>
+<p>图3-10 搜索界面（按照关键词搜索）</p>
+<p> <img src="https://s2.loli.net/2022/08/11/BpRlufxVhwrW6Dj.png" alt="image011.png"></p>
+<p>图3-11 查看全部论文界面</p>
+<p> <img src="https://s2.loli.net/2022/08/11/TOgxkpDfnLEIyFt.png" alt="image012.png"></p>
+<p>图3-12修改论文优先级和注释</p>
+<p> <img src="https://s2.loli.net/2022/08/11/oZdS6ROhzQPqtHv.png" alt="image013.png"></p>
+<p>图3-13词云图</p>
+<p> <img src="https://s2.loli.net/2022/08/11/RIr31JwhQvHqtKO.png" alt="image014.png"></p>
+<p>图3-14 阅读论文界面</p>
+<h3 id="3-7-5-需求分析"><a href="#3-7-5-需求分析" class="headerlink" title="3.7.5 需求分析"></a>3.7.5 需求分析</h3><h4 id="3-7-5-1-添加论文模块"><a href="#3-7-5-1-添加论文模块" class="headerlink" title="3.7.5.1 添加论文模块"></a>3.7.5.1 添加论文模块</h4><p>​        实现了读取本地pdf文件，对信息进行处理，内容展示。对于arXiv和PubMed两个来源的论文，实现了相应的爬虫技术，从网页获取论文的信息并且下载论文。最后将论文信息插入数据库。实现了在此界面手动加入新的关键词，将新加入的关键词加入Keywords表。</p>
+<h4 id="3-7-5-2-展示全部论文"><a href="#3-7-5-2-展示全部论文" class="headerlink" title="3.7.5.2 展示全部论文"></a>3.7.5.2 展示全部论文</h4><p>​        实现了从视图中查询数据，并且对数据进行整合，最终进行展示。实现了删除论文条目的按钮，程序清除数据库中对应表和与其相关的表中的信息。实现了弹出界面编辑、修改阅读优先级、阅读注释，以及点击按钮查看生成的关键词词云。</p>
+<h4 id="3-7-5-3-查询模块"><a href="#3-7-5-3-查询模块" class="headerlink" title="3.7.5.3 查询模块"></a>3.7.5.3 查询模块</h4><p>​        用户可以对标题、作者、关键词三个字段进行查询，标题可以进行模糊查询。</p>
+<h4 id="3-7-5-4-阅读论文模块"><a href="#3-7-5-4-阅读论文模块" class="headerlink" title="3.7.5.4 阅读论文模块"></a>3.7.5.4 阅读论文模块</h4><p>​        实现了按照优先级生成未读的论文的列表，双击论文条目即可打开文件。计算论文相关性并展示与每一篇论文相关性最强的论文题目。</p>
+<h1 id="4-系统评价"><a href="#4-系统评价" class="headerlink" title="4 系统评价"></a>4 系统评价</h1><h2 id="4-1-系统特色"><a href="#4-1-系统特色" class="headerlink" title="4.1 系统特色"></a>4.1 系统特色</h2><h3 id="4-1-1-阅读文献的推荐。"><a href="#4-1-1-阅读文献的推荐。" class="headerlink" title="4.1.1 阅读文献的推荐。"></a>4.1.1 阅读文献的推荐。</h3><p>​        阅读文献的推荐按照用户定义的优先级进行排序，同时会显示与其最相关的一篇论文的题目。将显示的论文按照用户定义的优先级排序只需要简单的调用函数即可，而显示最相关论文的功能则较为复杂，Paper++使用了深度学习自然语言处理的技术来实现这一功能。</p>
+<p>​        Paper++采用word2vec模型的预训练词向量将文献关键词单词向量化，然后对文献涉及到的所有关键词词向量求和作为文献特征向量。将两篇文献的文献特征向量相减，对结果求二阶范数即可得到两篇文献的相似度。最后对所有文献两两进行相似性的衡量，构建相似度矩阵。将相似度矩阵的主对角线上的元素设为无限大（np.inf），对每一行求最小值即可得到最相似的论文。计算论文a和论文b之前相似性的公式如下:</p>
+<p>$$<br>similarity(paper_a, paper_b) &#x3D;  ||(paper_a(\sum_i^{all}token_dict(keyword_i))- paper_b(\sum_i^{all}token_dict(keyword_i)) ||<br>$$<br>公式4-1 论文a和论文b之间的相似性</p>
+<p>$$<br>\begin{bmatrix}<br>np.inf &amp; … &amp; similarity(paper_1, paper_n)\<br>… &amp; \ddots &amp; … \<br>similarity(paper_n, paper_1) &amp; … &amp; np.inf<br>\end{bmatrix}<br>$$<br>公式4-2 相似度矩阵</p>
+<p>​        采用预训练的词向量主要是为了降低计算量，降低对设备的要求。预训练的数据来源：  <em>Glove</em>[1] <em>(6B tokens, 400K vocab, uncased, 50d, 100d, 200d, 300d vectors)<em>，</em>Glove</em>数据涵盖了40万英文单词的词向量，原始数据超过60亿单词。原始数据来自  <em>Wikipedia 2014</em>[2] + <em>Gigaword 5</em>[3]  。预训练数据包括50维，100维，200维，300维四组，我采用了50维的词向量。我并没有采用表示能力最强的300维词向量，这是因为在预训练的40万条词向量中查找对应单词的词向量需要比较大的计算量，在我的笔记本电脑上（Intel i7-8550U CPU @ 1.800GHz 1.99GHz）计算一篇论文的50维词向量需要大约30秒。</p>
+<p>​        通过深度学习的技术，用户在阅读论文时会被推荐最相关的论文，便于用户的学术学习和整理探索。</p>
+<h3 id="4-1-2-SQLite数据库"><a href="#4-1-2-SQLite数据库" class="headerlink" title="4.1.2 SQLite数据库"></a>4.1.2 SQLite数据库</h3><p>​        由于SQLServer数据库对与Python的支持不好，所以我选择了SQLite数据库。</p>
+<p>​        SQLite是一个轻量级的数据库，在内存中只有数百kb的占用，它能够支持Windows、Linux等主流的操作系统。更重要的是，SQLite在设计之初就是为嵌入式的使用，所以在Python中操作SQLite数据库非常的简单便捷</p>
+<h3 id="4-1-3-关键词词云图"><a href="#4-1-3-关键词词云图" class="headerlink" title="4.1.3 关键词词云图"></a>4.1.3 关键词词云图</h3><p>​        统计关键词在所有论文中出现的词频，以词频为权重，借助Python中的wordcloud库实现词云图的绘制。通过词云图，用户可以清楚的看到当前归档的论文中学科、领域的偏重。</p>
+<h3 id="4-1-4-爬虫"><a href="#4-1-4-爬虫" class="headerlink" title="4.1.4 爬虫"></a>4.1.4 爬虫</h3><p>​        输入网址，借助爬虫即可实现提取文献信息，文献自动下载。</p>
+<p>​        Paper++使用了requests和beautifulsoup库实现了简单的爬虫，从网页上获取文献标题、作者、作者单位、摘要等信息。然后对这些信息进行整理和预处理，插入数据表中。如果需要，还可以自动从网页下载论文到本地。（由于网络原因，部分外网论文下载速度极慢，所以推荐用户自行下载论文。）</p>
+<p>​        对于暂时无法使用爬虫获取信息的论文，用户可以自行下载pdf文献，将文件拖动导入Paper++中，Paper++会自动处理pdf文件，提取标题、作者、摘要等信息。</p>
+<p>​        目前论文爬取支持的数据库网站有<em>arXiv</em>[4]和<em>PubMed</em>[5]。<em>arXiv</em>是由Cornell University 支持运营维护的一个非盈利的数据库，涵盖物理、数学、计算机科学、定量生物学、定量金融、统计学、电气工程与系统科学、经济学等领域。是世界上最大的论文预发表数据库。<em>PubMed</em>专注于医学、生物学等，收录了大量的论文。</p>
+<h3 id="4-1-5-文献关键词提取"><a href="#4-1-5-文献关键词提取" class="headerlink" title="4.1.5 文献关键词提取"></a>4.1.5 文献关键词提取</h3><p>​        自动从摘要中提取关键词，并加入数据库中。采用查字典的方式实现，数据表Keywords中保存着所有关键词和对应id，Paper++通过字符串匹配，从摘要中获取关键词Keyword，并加入记录论文相关信息的表中。</p>
+<h2 id="4-2-系统不足及改进"><a href="#4-2-系统不足及改进" class="headerlink" title="4.2 系统不足及改进"></a>4.2 系统不足及改进</h2><h3 id="4-2-1-平台迁移"><a href="#4-2-1-平台迁移" class="headerlink" title="4.2.1 平台迁移"></a>4.2.1 平台迁移</h3><p>​        目前Paper++仅能在Windows桌面端使用，不支持mac OS系统，不支持移动端，且不支持远程访问等。下一步计划开发mac OS版本、安卓版本、ios版本，微信小程序版本，并且实现不同版本的互通。将用户的数据库信息存储在云端，使得用户无论何时何地，只要能连接互联网就能使用Paper++查看自己保存的文献资料。</p>
+<h3 id="4-2-2-爬虫功能扩展"><a href="#4-2-2-爬虫功能扩展" class="headerlink" title="4.2.2 爬虫功能扩展"></a>4.2.2 爬虫功能扩展</h3><p>​        目前Paper++仅支持arXiv和PubMed两个数据库，下一步计划扩展到更多数据库，并且使得Paper++支持通过DOI（digital object identifier）查询、下载论文。对所有论文爬虫进行整合，目前爬取论文信息需要事先选择数据库，整合后的论文爬虫不需要选择数据库网站，输入DOI号或者题目即可直接爬取。</p>
+<h3 id="4-2-3-论文阅读推荐功能扩展"><a href="#4-2-3-论文阅读推荐功能扩展" class="headerlink" title="4.2.3 论文阅读推荐功能扩展"></a>4.2.3 论文阅读推荐功能扩展</h3><p>​        目前Paper++获取文献特征向量采用的方式是将关键词的词向量求和作为文献的特征向量，这种方法计算难度较低，对设备要求低，而且可以采用预先训练好的词向量。但是文献特征向量受限于关键词的数量和关键词对文献信息的表示能力，这将极大的影响到文献特征向量的表示能力。下一步计划采用大型预训练语言模型，直接对文献全文进行表示，对比论文全文的相似度。同时引入推荐系统CTR等技术和内容，实现最优的论文推荐，</p>
+<p>​        同时，结合下一步计划中爬虫的功能，Paper++可以实现对未归档文献的推荐。</p>
+<h1 id="5-设计心得"><a href="#5-设计心得" class="headerlink" title="5 设计心得"></a>5 设计心得</h1><h2 id="5-1-界面设计"><a href="#5-1-界面设计" class="headerlink" title="5.1 界面设计"></a>5.1 界面设计</h2><p>​        用户界面对于程序来说是最重要的地方之一，用户使用软件首先见到的用户界面，所有的交互也都发生在用户界面上，如果用户界面设计的很粗糙，满满的“程序员风”，用户是不愿意持续使用这个软件的，于是我在用户界面上花了很大的精力。</p>
+<p>​        我使用Python来进行数据库的嵌入式开发，同时由于我对于前端的框架并不是很了解，于是我就使用了Python中的Tkinter库进行界面的开发。为了做出优美、简洁的用户界面，我一方面开始学习Tkinter库，一方面在网上查找资料。我在GitHub上发现了一个开源的工具：Tkinter-Designer[6]，这个工具可以将设计图直接转换成相关的Python代码，在我对其进行测试后，发现使用完全没有问题。但是其只支持按钮、文本框、显示图片等基本功能，对于较为复杂的显示列表、下拉菜单等功能则不支持。于是我使用了Figma[7]网页工具绘制界面设计图，然后使用Tkinter-Designer工具转换成Python代码，最后在此基础上自行加入一些复杂的功能。这样就实现了界面的制作。</p>
+<h2 id="5-2-Sqlite"><a href="#5-2-Sqlite" class="headerlink" title="5.2 Sqlite"></a>5.2 Sqlite</h2><p>​        在上学期的数据库课程中，我学习了SQLServer数据库的使用，代码的语法规则。但是在Python中对SQLServer的支持不好，所以我没有选择使用Python + SQL server的组合，而是使用了Python + SQLite3。在Sqlite3中，许多语句和使用方法都与SQLServer有一些细微的差别。这些语法上的不同在编写代码初期对我造成了一些困扰，随着我不断地学习和使用SQLite，这些都不再成为问题。</p>
+<h2 id="5-3-Python"><a href="#5-3-Python" class="headerlink" title="5.3 Python"></a>5.3 Python</h2><p>​        在此之前，我对Python有一定的了解，于是选择了SQLite嵌入Python进行Paper++的开发。在实际开发中我仍然遇到了许多小问题，比如我经常把Numpy库的array对象和Python自带的list数据类型弄混，将二者的方法混合使用，这对于开发初期的我是一个极大的困扰，也在调试程序，修改bug上花费了大量的时间。随着开发的进行，这些小问题都不再成为我的绊脚石，我可以很轻松的写出代码，并且一次测试通过。</p>
+<p>​        除了Python中我已经了解的知识，我还学习了许多新的知识，比如Tkinter库的使用，比如基础的计算机网络知识、爬虫的代码实现，比如单词词云图的制作和展示。这对我以后的学习、工作都有极大的帮助。</p>
+<p>参考资料：</p>
+<p>[1] Glove             <a target="_blank" rel="noopener" href="https://nlp.stanford.edu/projects/glove/">https://nlp.stanford.edu/projects/glove/</a></p>
+<p>[2] Wikipedia 2014     <a target="_blank" rel="noopener" href="http://dumps.wikimedia.org/enwiki/20140102/">http://dumps.wikimedia.org/enwiki/20140102/</a></p>
+<p>[3] Gigaword 5        <a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/LDC2011T07">https://catalog.ldc.upenn.edu/LDC2011T07</a></p>
+<p>[4] arXiv             <a target="_blank" rel="noopener" href="https://arxiv.org/">https://arxiv.org/</a></p>
+<p>[5] PubMed           <a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/">https://pubmed.ncbi.nlm.nih.gov/</a></p>
+<p>[6] Tkinter-Designer     <a target="_blank" rel="noopener" href="https://github.com/ParthJadhav/Tkinter-Designer">https://github.com/ParthJadhav/Tkinter-Designer</a></p>
+<p>[7] Figma            <a target="_blank" rel="noopener" href="http://www.figma.com/">www.figma.com/</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Haron Wan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/11/29/Designs%20of%20Database%20System/">http://example.com/2021/11/29/Designs%20of%20Database%20System/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Course-Design/">Course Design</a><a class="post-meta__tags" href="/tags/SQL/">SQL</a><a class="post-meta__tags" href="/tags/Word-Embedding/">Word Embedding</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/07/15/uhBzgafHMnKjsU7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/07/11/hexo/"><img class="prev-cover" src="https://s2.loli.net/2022/07/15/ZABLEjhRmYwa9qs.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">hexo</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/14/Singular-Value-Decomposition/"><img class="next-cover" src="https://s2.loli.net/2022/07/15/8qNaUKTZFhdkvXW.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Singular Value Decomposition</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/08/11/Designs-of-Computer-Network/" title="Designs of Computer Network"><img class="cover" src="https://s2.loli.net/2022/07/15/MWCOIuHTR6SmNlF.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-11</div><div class="title">Designs of Computer Network</div></div></a></div><div><a href="/2022/08/11/Designs-of-C-Programming/" title="Designs of C Programming"><img class="cover" src="https://s2.loli.net/2022/07/15/tcMN87RDmpPBeri.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-11</div><div class="title">Designs of C Programming</div></div></a></div><div><a href="/2022/08/11/Hardware-Curriculum-Designs/" title="Hardware Curriculum Designs"><img class="cover" src="https://s2.loli.net/2022/07/15/MWCOIuHTR6SmNlF.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-11</div><div class="title">Hardware Curriculum Designs</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2022/02/18/JbzYS5fKcOAaVMU.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Haron Wan</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HaronW" target="_blank" title=""><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:haronwan926@gmail.com" target="_blank" title=""><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Part of posts come from my <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45286813?spm=1001.2100.3001.5343/">CSDN blog</a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Designs-of-Database-System-%E2%80%94%E2%80%94Paper"><span class="toc-number">1.</span> <span class="toc-text">Designs of Database System ——Paper++</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text">1 设计目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%A6%81%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">2 任务与要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%AA%E4%BA%BA%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E2%80%94Paper"><span class="toc-number">1.3.</span> <span class="toc-text">3 个人文献管理系统—Paper++</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%BC%95%E8%A8%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.2.1  系统的主要任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-1-%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">3.2.1.1 系统功能描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-2%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">3.2.1.2数据库完整性要求</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-2-1%E5%AE%9E%E4%BD%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">1.3.3.2.1.</span> <span class="toc-text">3.2.1.2.1实体完整性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-2-3%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">1.3.3.2.2.</span> <span class="toc-text">3.2.1.2.3用户定义完整性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-2-3-%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">1.3.3.2.3.</span> <span class="toc-text">3.2.1.2.3 参照完整性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-2-4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-number">1.3.3.2.4.</span> <span class="toc-text">3.2.1.2.4 数据库安全性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.2.2 系统功能描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-1-%E6%B7%BB%E5%8A%A0%E8%AE%BA%E6%96%87%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">3.2.2.1 添加论文模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-2-%E5%B1%95%E7%A4%BA%E5%85%A8%E9%83%A8%E8%AE%BA%E6%96%87"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">3.2.2.2 展示全部论文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-3-%E6%9F%A5%E8%AF%A2%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">3.2.2.3 查询模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-4-%E9%98%85%E8%AF%BB%E8%AE%BA%E6%96%87%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.4.4.</span> <span class="toc-text">3.2.2.4 阅读论文模块</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%A6%82%E5%BF%B5%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">3.3 概念设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.3.1 连接的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E5%B1%9E%E6%80%A7%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.3.2 属性的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-E-R%E5%9B%BE"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3.3 E-R图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">3.4 逻辑设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.1.</span> <span class="toc-text">3.4.1 关系模式优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-1-%E5%90%88%E5%B9%B6%E5%85%B3%E7%B3%BB"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">3.4.1.1 合并关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-2-%E5%85%B3%E7%B3%BB%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">3.4.1.2 关系的连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-3-%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">3.4.1.3 关系的分解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E5%A4%96%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.2.</span> <span class="toc-text">3.4.2 外模式的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.4.3 关系模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.6.</span> <span class="toc-text">3.5 物理结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E5%AD%98%E5%8F%96%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.1.</span> <span class="toc-text">3.5.1 存取方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.2.</span> <span class="toc-text">3.5.2 存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%96%BD"><span class="toc-number">1.7.</span> <span class="toc-text">3.6 数据库实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-1-%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.7.1.</span> <span class="toc-text">3.6.1 表的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-2-%E8%A7%86%E5%9B%BE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.7.2.</span> <span class="toc-text">3.6.2 视图的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-3-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.7.3.</span> <span class="toc-text">3.6.3 触发器的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-4-%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.7.4.</span> <span class="toc-text">3.6.4 索引的定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.8.</span> <span class="toc-text">3.7系统实现和测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-1-%E6%A8%A1%E5%9D%97%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.8.1.</span> <span class="toc-text">3.7.1 模块流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-2-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.8.2.</span> <span class="toc-text">3.7.2 开发环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-2-1-%E4%B8%BB%E8%A6%81%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.8.2.1.</span> <span class="toc-text">3.7.2.1 主要开发环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-2-2-package"><span class="toc-number">1.8.2.2.</span> <span class="toc-text">3.7.2.2 package</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-3-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-number">1.8.3.</span> <span class="toc-text">3.7.3 核心代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-4-%E7%95%8C%E9%9D%A2%E6%88%AA%E5%9B%BE"><span class="toc-number">1.8.4.</span> <span class="toc-text">3.7.4 界面截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-5-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.8.5.</span> <span class="toc-text">3.7.5 需求分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-5-1-%E6%B7%BB%E5%8A%A0%E8%AE%BA%E6%96%87%E6%A8%A1%E5%9D%97"><span class="toc-number">1.8.5.1.</span> <span class="toc-text">3.7.5.1 添加论文模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-5-2-%E5%B1%95%E7%A4%BA%E5%85%A8%E9%83%A8%E8%AE%BA%E6%96%87"><span class="toc-number">1.8.5.2.</span> <span class="toc-text">3.7.5.2 展示全部论文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-5-3-%E6%9F%A5%E8%AF%A2%E6%A8%A1%E5%9D%97"><span class="toc-number">1.8.5.3.</span> <span class="toc-text">3.7.5.3 查询模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-5-4-%E9%98%85%E8%AF%BB%E8%AE%BA%E6%96%87%E6%A8%A1%E5%9D%97"><span class="toc-number">1.8.5.4.</span> <span class="toc-text">3.7.5.4 阅读论文模块</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BB%B7"><span class="toc-number">2.</span> <span class="toc-text">4 系统评价</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%B3%BB%E7%BB%9F%E7%89%B9%E8%89%B2"><span class="toc-number">2.1.</span> <span class="toc-text">4.1 系统特色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E9%98%85%E8%AF%BB%E6%96%87%E7%8C%AE%E7%9A%84%E6%8E%A8%E8%8D%90%E3%80%82"><span class="toc-number">2.1.1.</span> <span class="toc-text">4.1.1 阅读文献的推荐。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-SQLite%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.1.2.</span> <span class="toc-text">4.1.2 SQLite数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-%E5%85%B3%E9%94%AE%E8%AF%8D%E8%AF%8D%E4%BA%91%E5%9B%BE"><span class="toc-number">2.1.3.</span> <span class="toc-text">4.1.3 关键词词云图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-4-%E7%88%AC%E8%99%AB"><span class="toc-number">2.1.4.</span> <span class="toc-text">4.1.4 爬虫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-5-%E6%96%87%E7%8C%AE%E5%85%B3%E9%94%AE%E8%AF%8D%E6%8F%90%E5%8F%96"><span class="toc-number">2.1.5.</span> <span class="toc-text">4.1.5 文献关键词提取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%B6%B3%E5%8F%8A%E6%94%B9%E8%BF%9B"><span class="toc-number">2.2.</span> <span class="toc-text">4.2 系统不足及改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E5%B9%B3%E5%8F%B0%E8%BF%81%E7%A7%BB"><span class="toc-number">2.2.1.</span> <span class="toc-text">4.2.1 平台迁移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E7%88%AC%E8%99%AB%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">4.2.2 爬虫功能扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%8E%A8%E8%8D%90%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95"><span class="toc-number">2.2.3.</span> <span class="toc-text">4.2.3 论文阅读推荐功能扩展</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%AE%BE%E8%AE%A1%E5%BF%83%E5%BE%97"><span class="toc-number">3.</span> <span class="toc-text">5 设计心得</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">5.1 界面设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-Sqlite"><span class="toc-number">3.2.</span> <span class="toc-text">5.2 Sqlite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-Python"><span class="toc-number">3.3.</span> <span class="toc-text">5.3 Python</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/Designs-of-Computer-Network/" title="Designs of Computer Network"><img src="https://s2.loli.net/2022/07/15/MWCOIuHTR6SmNlF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Designs of Computer Network"/></a><div class="content"><a class="title" href="/2022/08/11/Designs-of-Computer-Network/" title="Designs of Computer Network">Designs of Computer Network</a><time datetime="2022-08-11T03:46:48.000Z" title="Created 2022-08-11 11:46:48">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/Hardware-Curriculum-Designs/" title="Hardware Curriculum Designs"><img src="https://s2.loli.net/2022/07/15/MWCOIuHTR6SmNlF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hardware Curriculum Designs"/></a><div class="content"><a class="title" href="/2022/08/11/Hardware-Curriculum-Designs/" title="Hardware Curriculum Designs">Hardware Curriculum Designs</a><time datetime="2022-08-11T03:45:36.000Z" title="Created 2022-08-11 11:45:36">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/Designs-of-C-Programming/" title="Designs of C Programming"><img src="https://s2.loli.net/2022/07/15/tcMN87RDmpPBeri.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Designs of C Programming"/></a><div class="content"><a class="title" href="/2022/08/11/Designs-of-C-Programming/" title="Designs of C Programming">Designs of C Programming</a><time datetime="2022-08-11T03:44:31.000Z" title="Created 2022-08-11 11:44:31">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/10/Prompt/" title="Prompt"><img src="https://s2.loli.net/2022/07/15/MWCOIuHTR6SmNlF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Prompt"/></a><div class="content"><a class="title" href="/2022/08/10/Prompt/" title="Prompt">Prompt</a><time datetime="2022-08-10T13:56:04.000Z" title="Created 2022-08-10 21:56:04">2022-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/07/Transformer/" title="Transformer"><img src="https://s2.loli.net/2022/07/15/uhBzgafHMnKjsU7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Transformer"/></a><div class="content"><a class="title" href="/2022/08/07/Transformer/" title="Transformer">Transformer</a><time datetime="2022-08-07T14:20:33.000Z" title="Created 2022-08-07 22:20:33">2022-08-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Haron Wan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
